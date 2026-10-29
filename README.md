@@ -1,229 +1,136 @@
-# 🚀 Portfolio — Full Stack Engineer
+# Rohit N Hiremath — Portfolio
 
-A blazing-fast, production-grade React portfolio built with **Vite**, **Framer Motion**, and modern React patterns. Designed to impress recruiters _and_ teach you advanced React concepts simultaneously.
+Personal portfolio for Rohit N Hiremath, a software engineer based in Bengaluru. It presents professional experience, selected projects, published Chrome extensions, technical skills, education, and contact links.
 
----
+The portfolio content was prepared using the supplied resume PDF as its reference. This is an existing personal site; there is no initial “fill in your details” setup step.
 
-## 📁 Folder Structure
+## Features
 
-```
-portfolio/
-├── index.html                        # HTML shell (Google Fonts loaded here)
-├── vite.config.js                    # Vite + path alias config
-├── package.json
-└── src/
-    ├── main.jsx                      # Entry point — ReactDOM.createRoot
-    ├── App.jsx                       # Root: ThemeProvider + lazy sections
-    ├── index.css                     # Global reset, CSS vars, utilities
-    │
-    ├── data/
-    │   └── resumeData.js             # 📝 ALL your content lives here — edit this!
-    │
-    ├── hooks/
-    │   └── index.js                  # 8 custom hooks (useScrollSpy, useDebounce…)
-    │
-    ├── context/
-    │   └── ThemeContext.jsx          # Context API + useReducer pattern
-    │
-    ├── components/
-    │   ├── layout/
-    │   │   ├── Navbar.jsx + .css     # Fixed nav, scroll progress, mobile menu
-    │   │   └── Footer.jsx + .css     # Footer with scroll-to-top
-    │   │
-    │   ├── ui/
-    │   │   ├── index.jsx             # Reusable: AnimatedSection, Badge, GlowCard…
-    │   │   └── ui.css
-    │   │
-    │   └── sections/
-    │       ├── Hero.jsx + .css       # Landing with terminal card + typewriter
-    │       ├── About.jsx + .css      # Bio + animated counters (rAF)
-    │       ├── Experience.jsx + .css # Tabbed timeline
-    │       ├── Projects.jsx + .css   # Filterable grid (useMemo)
-    │       ├── Skills.jsx + .css     # Animated skill bars + chip grid
-    │       ├── ReactConcepts.jsx     # Accordion learning reference
-    │       ├── Education.jsx + .css  # Timeline cards
-    │       └── Contact.jsx + .css    # Form with useReducer
-```
+- Responsive layouts for desktop, tablet, and mobile.
+- Light and dark themes with a toggle in the navigation.
+- System theme detection on the first visit and a saved preference after choosing a theme.
+- Sticky navigation with active-section indicators and a mobile menu.
+- Project cards with illustrative interface studies and expandable contribution details.
+- Professional experience covering Enterprisebot and AdSpyder.
+- Chrome extension highlights, grouped technical skills, and education.
+- Resume viewing and PDF download.
+- Direct email, phone, LinkedIn, and GitHub links, plus a copy-email button.
+- Keyboard focus indicators, a skip-to-content link, and reduced-motion support.
 
----
+Project visuals are illustrative studies, rather than screenshots of production applications. Experience and extension user figures reflect the resume, rather than live data.
 
-## ⚡ Quick Start
+## Technology
 
-```bash
-# 1. Install dependencies
-npm install
+The current page uses React 18, Vite 5, Lucide React icons, and CSS custom properties. Theme state is managed through React Context and browser storage. Google Fonts supplies DM Sans, DM Serif Display, and Space Mono, with local fallback fonts.
 
-# 2. Start dev server
+The application is a static frontend. It has no contact-form backend, automatic resume parser, or required API credentials. Some packages and components from the earlier version remain in the repository but are not used by the current page.
+
+## Local development
+
+Install Node.js and npm, then run these commands from the project root:
+
+```sh
+npm ci
 npm run dev
-
-# 3. Open browser
-# → http://localhost:5173
 ```
 
----
+Open the local URL printed by Vite. Its default development port is `5173`; it may choose another port if that port is occupied.
 
-## ✏️ First Thing To Do — Fill In Your Details
+On Windows PowerShell, use `npm.cmd` in place of `npm` if the execution policy blocks `npm.ps1`.
 
-Open `src/data/resumeData.js` and update the `personalInfo` object:
+### Local content dependency
 
-```js
-export const personalInfo = {
-  name: "Rahul Sharma",               // ← Your name
-  designation: "Full Stack Engineer",
-  email: "rahul@gmail.com",           // ← Your email
-  phone: "+91 9876543210",            // ← Your phone
-  location: "Bengaluru, India",
-  linkedin: "https://linkedin.com/in/rahulsharma",  // ← Your LinkedIn
-  github: "https://github.com/rahulsharma",          // ← Your GitHub
-  resume: "/resume.pdf",              // ← Drop resume.pdf in /public folder
-};
+The current components import portfolio content from resume. The local `src/data/` directory is ignored by Git, so a fresh checkout requires the content module and resume PDF to be supplied separately before running or building the application.
+
+The resume PDF is located at:
+
+```text
+src/data/Rohit_N_Hiremath_Frontend_developer.pdf
 ```
 
-Everything else — projects, skills, experience — is already filled from your resume!
+The PDF is the editorial reference for the portfolio. Replacing it does not automatically extract or update the text displayed on the website. Content and resume links must stay consistent with the supplied document.
 
----
+## Project structure
 
-## ⚛️ React Concepts Demonstrated
-
-### Basic
-| Concept | Where Used |
-|---------|-----------|
-| JSX & Rendering | Every component |
-| Props | Badge, GlowCard, FormField, ProjectCard |
-| useState | Form, filters, accordion, mobile menu |
-| Event handling | Navbar scroll, form submit, filter clicks |
-| Conditional rendering | Mobile menu, form status, active states |
-| Lists & keys | Projects grid, skills, education timeline |
-
-### Intermediate
-| Concept | Where Used |
-|---------|-----------|
-| useEffect + cleanup | Scroll spy, IntersectionObserver, event listeners |
-| useRef | Animated counters (rAF), GlowCard mouse tracking |
-| useCallback | ThemeContext action creators |
-| useMemo | Project filtering in Projects.jsx |
-| useReducer | ThemeContext, Contact form state |
-| Custom hooks | useScrollSpy, useMousePosition, useMediaQuery, useDebounce, useScrollProgress, useCounter, usePrevious, useIntersectionObserver |
-| Context API | ThemeProvider (split state + dispatch contexts) |
-
-### Advanced
-| Concept | Where Used |
-|---------|-----------|
-| React.lazy + Suspense | App.jsx — code-split all below-fold sections |
-| AnimatePresence | Projects filter transitions, Experience panel swap |
-| Performance (rAF) | AnimatedCounter — requestAnimationFrame animation |
-| IntersectionObserver | AnimatedSection, SkillBar, AnimatedCounter |
-| Compound-like patterns | ui/index.jsx shared component library |
-| StrictMode | main.jsx — double-invokes effects in dev |
-| Dynamic imports | Each section is a separate JS chunk in build |
-
----
-
-## 🎨 Design System
-
-All design tokens live in `src/index.css` as CSS custom properties:
-
-```css
---bg-primary: #050a0e        /* Main background */
---accent-green: #00ff87      /* Primary accent */
---accent-blue: #60a5fa       /* Secondary accent */
---font-display: 'Syne'       /* Headings */
---font-mono: 'Space Mono'    /* Code/labels */
---font-body: 'DM Sans'       /* Body text */
+```text
+portfolio/
+├── index.html                  # Metadata, favicon, and initial theme selection
+├── package.json                # Dependencies and npm scripts
+├── package-lock.json           # Locked dependency versions
+├── vite.config.js              # React plugin and @ alias for src/
+└── src/
+    ├── main.jsx                # React entry point
+    ├── App.jsx                 # Theme provider and page composition
+    ├── index.css               # Current page styles, theme tokens, breakpoints
+    ├── context/
+    │   └── ThemeContext.jsx    # Theme state and preference persistence
+    ├── data/                   # Local content module and resume PDF (Git-ignored)
+    └── components/
+        ├── layout/
+        │   ├── Navbar.jsx      # Navigation, mobile menu, and theme toggle
+        │   └── Footer.jsx      # Copyright and back-to-top link
+        ├── ui/
+        │   └── SectionHeading.jsx
+        └── sections/
+            ├── Hero.jsx
+            ├── About.jsx
+            ├── Projects.jsx
+            ├── Experience.jsx
+            ├── Skills.jsx      # Skills and education
+            └── Contact.jsx
 ```
 
----
+This tree shows the current page and its supporting files. Earlier section styles, shared utilities, and standalone `Education.jsx` and `ReactConcepts.jsx` components remain in the source tree. The current `App.jsx` does not render those standalone sections; education appears within `Skills.jsx`.
 
-## 🔌 Integrations To Add
+## Design and themes
 
-### Contact Form
-Replace the `setTimeout` in `Contact.jsx` with a real service:
+The design pairs large sans-serif headings with italic serif accents, generous spacing, and project-specific illustrations.
 
-**Option A — EmailJS (free, no backend needed)**
-```bash
-npm install @emailjs/browser
-```
-```js
-import emailjs from '@emailjs/browser';
-emailjs.send('service_id', 'template_id', { name, email, message }, 'public_key');
-```
+| Token | Light theme | Dark theme |
+| --- | --- | --- |
+| Background | `#faf9f6` — warm ivory | `#131b19` — charcoal green |
+| Main text | `#202e2a` | `#eceee6` |
+| Accent | `#216655` — deep teal | `#a2d4b2` — soft mint |
+| Surface | `#ffffff` | `#1d2925` |
 
-**Option B — Formspree**
-```js
-// Just change the form action:
-fetch('https://formspree.io/f/YOUR_ID', { method: 'POST', body: formData });
-```
+The current page styles live in `src/index.css`. Light-theme tokens are defined on `:root`, and dark-theme overrides use `:root[data-theme='dark']`.
 
-### Analytics
-Add Google Analytics to `index.html`:
-```html
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXX"></script>
-```
+Theme selection uses the `portfolio-theme` local-storage key. Without a saved choice, the site follows the system preference and responds to system theme changes. Choosing a theme saves that preference when storage is available. The toggle still works for the current session if storage is unavailable.
 
----
+## Maintaining the portfolio
 
-## 🚀 Deployment
+| Change | Relevant files |
+| --- | --- |
+| Page sections and ordering | `src/App.jsx` |
+| Section copy and layouts | `src/components/sections/` |
+| Resume-backed content and links | Local `src/data/resumeData.js` module |
+| Resume document | PDF in `src/data/` |
+| Navigation entries | `navigation` in `src/components/layout/Navbar.jsx` |
+| Colors, typography, and responsive styling | `src/index.css` |
+| Theme behavior | `src/context/ThemeContext.jsx` and initial theme script in `index.html` |
+| Page title, description, and favicon | `index.html` |
 
-### Vercel (recommended — 1 command)
-```bash
-npm install -g vercel
-vercel
-```
+Keep navigation targets aligned with section IDs when changing the page structure. Contact links open the visitor’s email or phone application; the copy button uses the browser Clipboard API and displays a fallback message if copying fails.
 
-### Netlify
-```bash
+## Build and preview
+
+```sh
 npm run build
-# Drag & drop the /dist folder at netlify.com/drop
+npm run preview
 ```
 
-### GitHub Pages
-```bash
-npm install --save-dev gh-pages
-# Add to package.json scripts: "deploy": "gh-pages -d dist"
-npm run build && npm run deploy
-```
+The build writes the static site to `dist/`. The preview command serves that output locally for review; it is not a production hosting service.
 
----
+For deployment, run the build with the local content module and PDF available, then publish the generated `dist/` directory to a static host. Repository-based build environments also need those ignored content files supplied before the build.
 
-## 📦 Dependencies
+## Review checklist
 
-| Package | Purpose |
-|---------|---------|
-| `react` + `react-dom` | Core React |
-| `framer-motion` | Animations & transitions |
-| `lucide-react` | Icon library |
-| `react-intersection-observer` | Scroll-triggered animations |
-| `vite` | Build tool + dev server |
+- Check the page at mobile and desktop widths for readable text and horizontal overflow.
+- Switch themes, reload, and confirm the selected theme persists.
+- Open the mobile menu, navigate to a section, and test closing it with Escape.
+- Expand project details and check keyboard focus visibility.
+- Open and download the resume PDF.
+- Verify contact links and the copy-email action.
+- Run the production build after application changes.
 
----
-
-## 🧩 Extending The Portfolio
-
-**Add a new section:**
-1. Create `src/components/sections/YourSection.jsx` + `YourSection.css`
-2. Lazy import it in `App.jsx`
-3. Add a nav entry to the `NAV_ITEMS` array in `Navbar.jsx`
-4. Add a section `id` matching the nav entry
-
-**Add a new project:**
-Just push to the `projects` array in `resumeData.js` — the grid updates automatically.
-
-**Add a new skill:**
-Update `SKILL_LEVELS` and `CATEGORY_GROUPS` in `Skills.jsx`.
-
----
-
-## 💡 Learning Path Using This Portfolio
-
-1. **Start** → Read `src/main.jsx` and `src/App.jsx` to understand entry points
-2. **Basics** → Study `Hero.jsx` — props, state, events, JSX
-3. **Hooks** → Study `About.jsx` — useEffect + IntersectionObserver + rAF
-4. **Context** → Study `ThemeContext.jsx` — useReducer + split contexts
-5. **Performance** → Study `App.jsx` — React.lazy + Suspense code splitting
-6. **Custom Hooks** → Read `src/hooks/index.js` — 8 reusable patterns
-7. **Derived State** → Study `Projects.jsx` — useMemo for filtering
-8. **Forms** → Study `Contact.jsx` — useReducer for form state machine
-
----
-
-*Built with React 18 + Vite 5 — © 2024*
+There are currently no test or lint scripts defined in `package.json`.
