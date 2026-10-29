@@ -1,33 +1,6 @@
+import { ArrowRight } from 'lucide-react';
 import { personalInfo } from '../../data/resumeData';
-import './Footer.css';
 
 export default function Footer() {
-  const year = new Date().getFullYear();
-  const initials = personalInfo.name
-    .split(' ').map((n) => n[0]).join('').slice(0, 2).toUpperCase() || 'YN';
-
-  const scrollTop = () => window.scrollTo({ top: 0, behavior: 'smooth' });
-
-  return (
-    <footer className="footer">
-      <div className="container footer__inner">
-        <div className="footer__left">
-          <span className="footer__logo font-display">
-            <span style={{ color: 'var(--text-muted)' }}>[</span>
-            {initials}
-            <span style={{ color: 'var(--text-muted)' }}>]</span>
-          </span>
-          <p className="footer__copy font-mono">
-            © {year} {personalInfo.name || 'Your Name'} — Built with React + Vite
-          </p>
-        </div>
-
-
-
-        <button className="footer__scroll-top font-mono" onClick={scrollTop}>
-          ↑ Back to top
-        </button>
-      </div>
-    </footer>
-  );
+  return <footer className="container footer"><a href="#home" className="wordmark" aria-label="Back to top">rh<span>.</span></a><p>© {new Date().getFullYear()} {personalInfo.name}. Built with care.</p><a href="#home">Back to top <ArrowRight size={15} className="arrow-up" /></a></footer>;
 }

@@ -1,219 +1,60 @@
-// ============================================================
-// PORTFOLIO DATA — Fill in your personal details below
-// ============================================================
+﻿import resumePdf from './Rohit_N_Hiremath_Frontend_developer.pdf?url';
 
+// Resume PDF is the source of truth. GitHub is retained from the existing portfolio.
 export const personalInfo = {
-  name: "ROHIT N HIREMATH",
-  designation: "Full Stack Engineer",
-  tagline: "Frontend Specialist · React · Next.js · AI Workflows",
-  email: "rohithiremath05@gmail.com",
-  phone: "+91 9380103110",
-  location: "Bengaluru, India",
-  linkedin: "https://www.linkedin.com/in/rohit-n-hiremath-50128418b",
-  github: "https://github.com/rohithiremath5",
-  resume: "https://drive.google.com/file/d/1yi8Xhyd8NmNjVOrZkuGFXEVB398o-Oo0/view?usp=sharing",                      // link to your PDF resume
-  bio: `Full-stack Software Engineer with 3 years of experience specializing in React.js and Next.js, building data-driven dashboards and scalable backend systems. I turn complex analytics data into beautiful, performant interfaces — and I love integrating AI into everyday workflows.`,
+  name: 'Rohit N Hiremath',
+  designation: 'Software Engineer',
+  tagline: 'Frontend craft. Full-stack thinking.',
+  email: 'rohithiremath05@gmail.com',
+  phone: '+91 9380103110',
+  location: 'Bengaluru, India',
+  linkedin: 'https://www.linkedin.com/in/rohit-n-hiremath',
+  github: 'https://github.com/rohithiremath5',
+  resume: resumePdf,
+  bio: 'I’m a software engineer with 3 years of experience building web applications, analytics platforms, and AI-enabled features. I bring React and Next.js interfaces to life, connect them to reliable APIs, and turn complex business requirements into usable products.',
+  currentFocus: 'At Enterprisebot, I’m working with Python-based RAG systems, DocBrain knowledge bases, document chunking, and vector databases — exploring how the right information reaches the right answer.',
 };
-
 export const skills = {
-  languages: ["JavaScript (ES6+)", "HTML5", "CSS3"],
-  frontend: ["React.js", "Next.js", "React Native", "Responsive UI", "CSS Animations"],
-  backend: ["Node.js", "RESTful APIs", "PostgreSQL", "Puppeteer"],
-  analytics: ["Google Analytics (GA4)", "Search Console API", "SEO Optimization", "Performance Optimization"],
-  ai: ["GPT-4 Integration", "Vector Search", "Prompt Engineering", "AI Workflows"],
-  tools: ["Google Cloud Platform", "Chrome Extension APIs", "Vite", "Git"],
+  frontend: ['React.js', 'Next.js', 'React Native', 'Tailwind CSS', 'CSS Modules', 'Responsive Design'],
+  languages: ['JavaScript (ES6+)', 'Python', 'TypeScript (Basic)', 'HTML5', 'CSS3'],
+  backend: ['Node.js', 'RESTful APIs', 'PostgreSQL', 'API Integration', 'Postman'],
+  ai: ['RAG', 'Knowledge Bases', 'Vector Databases', 'Generative AI', 'OpenAI API'],
+  tools: ['GCP', 'AWS', 'Git', 'GitHub', 'Chrome Extension APIs', 'Linux'],
 };
-
 export const experiences = [
-  {
-    id: 1,
-    role: "Software Engineer (Full Stack – Frontend Focus)",
-    company: "AdSpyder (GSTECH Pvt Ltd)",
-    location: "Bengaluru, India",
-    duration: "Feb 2024 – Present",
-    type: "Full-time",
-    color: "#00ff87",
-    highlights: [
-      "Engineered and optimized Next.js landing pages — improved SEO rankings and reduced page load latency significantly",
-      "Built interactive dashboards integrating GA4 & Search Console APIs to visualize multi-platform performance metrics",
-      "Enhanced frontend data visualization components, improving UX and engagement across analytics workflows",
-      "Implemented AI-driven features (GPT-4, Vector Search) to automate content generation, reducing manual effort for end-users",
-    ],
-  },
-  {
-    id: 2,
-    role: "Chrome Extension Developer Intern (Frontend Focus)",
-    company: "AdSpyder (GSTECH Pvt Ltd)",
-    location: "Bengaluru, India",
-    duration: "Aug 2023 – Jan 2024",
-    type: "Internship",
-    color: "#60a5fa",
-    highlights: [
-      "Built Chrome Extensions with user-facing interfaces to capture and display live ad data directly within the browser",
-      "Developed frontend-integrated tools for product research, streamlining Amazon ASIN identification workflows",
-    ],
-  },
+  { id: 1, role: 'Software Engineer', company: 'Enterprisebot', duration: 'May 2026 — Present', type: 'Current role', highlights: [
+    'Working on Python-based Retrieval-Augmented Generation systems and document retrieval workflows.',
+    'Working with DocBrain knowledge bases to understand how documents are processed, organized, and made available for retrieval.',
+    'Gaining hands-on experience with document chunking strategies and vector databases for AI-powered knowledge systems.',
+  ] },
+  { id: 2, role: 'Software Engineer — Frontend', company: 'AdSpyder', companyDetail: 'GSTECH Technology Pvt Ltd', duration: 'Feb 2024 — Apr 2026', type: 'Full-time', highlights: [
+    'Led Next.js landing page development and optimization, improving performance, SEO, and user experience.',
+    'Designed analytics dashboards with React, GA4, and Search Console APIs, and owned a reusable React and Tailwind CSS component system.',
+    'Integrated GPT-4 ad generation features and partnered with designers to deliver responsive interfaces across Chrome, Firefox, and Safari.',
+    'Participated in Agile sprints, GitHub code reviews, and Git branching workflows.',
+  ] },
+  { id: 3, role: 'Chrome Extension Developer Intern', company: 'AdSpyder', companyDetail: 'GSTECH Technology Pvt Ltd', duration: 'Aug 2023 — Jan 2024', type: 'Internship', highlights: [
+    'Developed and published Dark Mode for Google Docs, reaching 40,000+ active users and 155 ratings on the Chrome Web Store.',
+    'Built Roblox Friend Manager using the official Roblox API, CSRF protection, and infinite scroll; adopted by 678+ users within weeks of launch.',
+    'Integrated REST APIs for real-time data fetching and tested extensions across multiple Chrome versions.',
+  ] },
 ];
-
 export const projects = [
-  {
-    id: 1,
-    title: "Omni-Channel Analytics Dashboard",
-    subtitle: "Real-time multi-platform performance visualization",
-    stack: ["React.js", "Next.js", "Node.js", "GA4 API", "Search Console API"],
-    color: "#00ff87",
-    accent: "#00c96d",
-    icon: "📊",
-    description:
-      "A responsive dashboard UI to visualize multi-platform analytics data. Integrated GA4 and Search Console APIs for real-time updates and dynamic rendering. Enabled real-time tracking of top-performing ads, increasing session duration.",
-    highlights: [
-      "Real-time data updates via GA4 & Search Console APIs",
-      "Dynamic UI rendering with React state management",
-      "Improved user session duration through intuitive UX",
-    ],
-    github: "#",
-    live: "#",
-    featured: true,
-  },
-  {
-    id: 2,
-    title: "AI-Orchestrated Mobile App Suite",
-    subtitle: "Cross-platform mobile apps powered by GPT-4",
-    stack: ["React Native", "GPT-4", "Prompt Engineering"],
-    color: "#a78bfa",
-    accent: "#7c3aed",
-    icon: "🤖",
-    description:
-      "Cross-platform mobile applications using React Native with scalable UI components. AI-driven workflows accelerated development lifecycle by 60%, translating business requirements into functional UI systems.",
-    highlights: [
-      "60% reduction in development time via AI-driven workflows",
-      "Scalable UI component architecture",
-      "Structured feature flows from business requirements",
-    ],
-    github: "#",
-    live: "#",
-    featured: true,
-  },
-  {
-    id: 3,
-    title: "AI-Driven Creative Ad Generator",
-    subtitle: "GPT-4 powered personalized ad creative generation",
-    stack: ["Node.js", "OpenAI API", "Vector Database"],
-    color: "#f59e0b",
-    accent: "#d97706",
-    icon: "✨",
-    description:
-      "User-facing systems to generate personalized ad creatives based on user inputs. Integrated GPT-4 workflows for dynamic content generation with improved usability and conversion-focused outputs.",
-    highlights: [
-      "Personalized ad creatives from user input",
-      "GPT-4 dynamic content generation pipeline",
-      "Vector database for semantic search & retrieval",
-    ],
-    github: "#",
-    live: "#",
-    featured: false,
-  },
-  {
-    id: 4,
-    title: "Distributed Ad Data Ingestion System",
-    subtitle: "Backend pipeline handling 50M+ records",
-    stack: ["Node.js", "Puppeteer", "PostgreSQL"],
-    color: "#f43f5e",
-    accent: "#e11d48",
-    icon: "⚙️",
-    description:
-      "Backend systems supporting real-time data availability for frontend dashboards. Optimized data pipelines handling 50M+ records, ensuring fast and consistent data delivery.",
-    highlights: [
-      "50M+ records processed efficiently",
-      "Real-time data availability for dashboards",
-      "Optimized PostgreSQL queries for fast delivery",
-    ],
-    github: "#",
-    live: "#",
-    featured: false,
-  },
+  { id: 1, title: 'Omni-Channel Analytics Dashboard', category: 'Analytics platform', visual: 'analytics', stack: ['React.js', 'Next.js', 'Node.js', 'GA4 API'], description: 'A responsive dashboard bringing multi-platform ad performance into one view. I owned its design and development, integrated GA4 and Search Console APIs, and added lazy loading for better performance.', highlights: ['Real-time API integration', 'Responsive data visualization', 'Cross-browser compatibility'] },
+  { id: 2, title: 'AI-Orchestrated Mobile Application Suite', category: 'Mobile development', visual: 'mobile', stack: ['React Native', 'GPT-4', 'Prompt Engineering'], description: 'Cross-platform mobile applications built around reusable UI components. I translated business requirements into structured feature flows and used GPT-4 to accelerate parts of development.', highlights: ['Cross-platform components', 'Structured product flows', 'AI-assisted development'] },
+  { id: 3, title: 'AI-Driven Creative Ad Generator', category: 'Generative AI', visual: 'creative', stack: ['React.js', 'Node.js', 'OpenAI API'], description: 'A user-facing interface for personalized ad creatives, connecting GPT-4 and vector search through REST APIs. I built responsive components and handled frontend API integration end-to-end.', highlights: ['Personalized ad generation', 'GPT-4 and vector search', 'End-to-end frontend integration'] },
+  { id: 4, title: 'Distributed Ad Data Ingestion System', category: 'Backend & data', visual: 'pipeline', stack: ['Node.js', 'Puppeteer', 'PostgreSQL'], description: 'Backend pipelines processing large volumes of ad data for real-time frontend dashboards. I contributed to data parsing and query optimization to improve delivery speed for the analytics UI.', highlights: ['Ad data processing', 'Query optimization', 'Dashboard data availability'] },
 ];
-
+export const extensions = [
+  { title: 'Dark Mode for Google Docs', description: 'Published on the Chrome Web Store and featured in Workflow & Planning.', metric: '40,000+', label: 'active users', icon: 'moon' },
+  { title: 'Roblox Friend Manager', description: 'Official API integration, CSRF protection, and infinite scrolling.', metric: '678+', label: 'users within weeks', icon: 'users' },
+];
 export const education = [
-  {
-    degree: "Bachelor of Engineering — Computer Science",
-    institution: "BIET, Davangere",
-    duration: "2018 – 2022",
-    score: "CGPA: 7.75",
-    icon: "🎓",
-  },
-  {
-    degree: "Pre-University (PCMC)",
-    institution: "Sir M V College, Davangere",
-    duration: "2016 – 2018",
-    score: "82.1%",
-    icon: "📚",
-  },
-  {
-    degree: "High School",
-    institution: "KLE School, Haveri",
-    duration: "2013 – 2016",
-    score: "CGPA: 9.4",
-    icon: "🏫",
-  },
+  { degree: 'Bachelor of Engineering in Computer Science', institution: 'BIET, Davangere', score: 'CGPA 7.75' },
+  { degree: 'Pre-University (PCMC)', institution: 'Sir M V College, Davangere', score: '82.1%' },
 ];
-
 export const stats = [
-  { label: "Years Experience", value: 3, suffix: "+" },
-  { label: "Projects Shipped", value: 12, suffix: "+" },
-  { label: "Records Processed", value: 50, suffix: "M+" },
-  { label: "Dev Time Saved", value: 60, suffix: "%" },
-];
-
-export const reactConcepts = [
-  {
-    category: "Core Fundamentals",
-    level: "Basic",
-    color: "#00ff87",
-    concepts: [
-      { name: "JSX & Rendering", desc: "Component rendering, conditional rendering, lists & keys" },
-      { name: "Props & State", desc: "Data flow, useState, controlled vs uncontrolled components" },
-      { name: "Event Handling", desc: "Synthetic events, form handling, event delegation" },
-      { name: "Component Lifecycle", desc: "Mount, update, unmount phases with hooks" },
-    ],
-  },
-  {
-    category: "Hooks Deep Dive",
-    level: "Intermediate",
-    color: "#60a5fa",
-    concepts: [
-      { name: "useState & useReducer", desc: "Local state, complex state with reducer pattern" },
-      { name: "useEffect & useLayoutEffect", desc: "Side effects, cleanup, dependency arrays" },
-      { name: "useRef & useImperativeHandle", desc: "DOM refs, forwarding refs, imperative APIs" },
-      { name: "useCallback & useMemo", desc: "Memoization strategies and performance optimization" },
-      { name: "useContext", desc: "Context API for global state without prop drilling" },
-      { name: "Custom Hooks", desc: "Reusable stateful logic extraction and composition" },
-    ],
-  },
-  {
-    category: "Advanced Patterns",
-    level: "Advanced",
-    color: "#a78bfa",
-    concepts: [
-      { name: "Code Splitting & Lazy Loading", desc: "React.lazy, Suspense, dynamic imports" },
-      { name: "Error Boundaries", desc: "Graceful error handling in component trees" },
-      { name: "Render Props & HOCs", desc: "Component composition patterns" },
-      { name: "Compound Components", desc: "Flexible, expressive component APIs" },
-      { name: "Concurrent Features", desc: "useTransition, useDeferredValue, Suspense" },
-      { name: "Portals", desc: "Rendering outside the root DOM hierarchy" },
-      { name: "Virtualization", desc: "Windowing large lists for performance" },
-      { name: "Reconciliation", desc: "Virtual DOM diffing algorithm internals" },
-    ],
-  },
-  {
-    category: "Ecosystem & Architecture",
-    level: "Expert",
-    color: "#f59e0b",
-    concepts: [
-      { name: "Next.js App Router", desc: "SSR, SSG, ISR, Server Components" },
-      { name: "State Management", desc: "Zustand, Redux Toolkit, React Query" },
-      { name: "Testing", desc: "React Testing Library, Jest, Vitest" },
-      { name: "Performance Profiling", desc: "React DevTools, bundle analysis, Core Web Vitals" },
-    ],
-  },
+  { value: '3', suffix: '', label: 'Years of experience' },
+  { value: '40k', suffix: '+', label: 'Extension users' },
+  { value: '4', suffix: '', label: 'Featured projects' },
 ];

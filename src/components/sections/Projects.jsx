@@ -1,138 +1,21 @@
-import { useState, useMemo } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import { ExternalLink, Github, Star } from 'lucide-react';
-import { projects } from '../../data/resumeData';
-import { AnimatedSection, SectionLabel, SectionTitle, Badge, GlowCard } from '../ui';
-import './Projects.css';
+import { ArrowUpRight, Check, ChevronDown, Code2, Database, Layers3, Moon, Sparkles, Users } from 'lucide-react';
+import { projects, extensions } from '../../data/resumeData';
+import SectionHeading from '../ui/SectionHeading';
 
-const FILTERS = ['All', 'Featured', 'Frontend', 'Backend', 'AI'];
-
-/**
- * Projects section demonstrates:
- * - useMemo for derived/filtered data
- * - AnimatePresence for list animations
- * - Compound component-like pattern
- */
-export default function Projects() {
-  const [activeFilter, setActiveFilter] = useState('All');
-
-  // useMemo — only recomputes when projects or filter changes
-  const filteredProjects = useMemo(() => {
-    if (activeFilter === 'All') return projects;
-    if (activeFilter === 'Featured') return projects.filter((p) => p.featured);
-    if (activeFilter === 'Frontend') return projects.filter((p) =>
-      p.stack.some((s) => ['React.js', 'Next.js', 'React Native'].includes(s))
-    );
-    if (activeFilter === 'Backend') return projects.filter((p) =>
-      p.stack.some((s) => ['Node.js', 'PostgreSQL', 'Puppeteer'].includes(s))
-    );
-    if (activeFilter === 'AI') return projects.filter((p) =>
-      p.stack.some((s) => s.toLowerCase().includes('gpt') || s.toLowerCase().includes('openai') || s.toLowerCase().includes('vector'))
-    );
-    return projects;
-  }, [activeFilter]);
-
-  return (
-    <section className="section projects" id="projects">
-      <div className="container">
-        <AnimatedSection>
-          <SectionLabel number="03." label="PROJECTS" />
-          <SectionTitle accent="Built.">What I've</SectionTitle>
-        </AnimatedSection>
-
-        {/* Filter bar */}
-        <AnimatedSection delay={0.1} className="projects__filters">
-          {FILTERS.map((f) => (
-            <button
-              key={f}
-              className={`filter-btn font-mono ${activeFilter === f ? 'filter-btn--active' : ''}`}
-              onClick={() => setActiveFilter(f)}
-            >
-              {f}
-              {f === 'All' && <span className="filter-count">{projects.length}</span>}
-            </button>
-          ))}
-        </AnimatedSection>
-
-        {/* Project grid */}
-        <motion.div className="projects__grid" layout>
-          <AnimatePresence mode="popLayout">
-            {filteredProjects.map((project, i) => (
-              <motion.div
-                key={project.id}
-                layout
-                initial={{ opacity: 0, scale: 0.95 }}
-                animate={{ opacity: 1, scale: 1 }}
-                exit={{ opacity: 0, scale: 0.95 }}
-                transition={{ duration: 0.35, delay: i * 0.06, ease: [0.16, 1, 0.3, 1] }}
-              >
-                <ProjectCard project={project} />
-              </motion.div>
-            ))}
-          </AnimatePresence>
-        </motion.div>
-      </div>
-    </section>
-  );
+function ProjectVisual({ type }) {
+  if (type === 'analytics') return <div className="project-visual visual-analytics" aria-hidden="true"><div className="mini-dashboard"><aside><span className="mini-logo">◈</span><span /><span /><span /><span /></aside><div className="mini-dashboard-content"><div className="mini-toolbar"><b>Overview</b><span>This month <ChevronDown size={9} /></span></div><div className="mini-metrics"><div><span>Performance</span><strong>↗</strong></div><div><span>Engagement</span><strong>↗</strong></div><div><span>Reach</span><strong>↗</strong></div></div><div className="mini-chart"><div className="chart-title">Performance overview <span>● All channels</span></div><svg viewBox="0 0 350 80" preserveAspectRatio="none"><path d="M0 70 L25 62 L50 67 L75 37 L100 45 L125 33 L150 42 L175 20 L200 28 L225 12 L250 22 L275 9 L300 17 L325 4 L350 8 L350 80 L0 80Z" fill="var(--chart-fill)" /><path d="M0 70 L25 62 L50 67 L75 37 L100 45 L125 33 L150 42 L175 20 L200 28 L225 12 L250 22 L275 9 L300 17 L325 4 L350 8" fill="none" stroke="var(--accent)" strokeWidth="2.5" /></svg></div></div></div><span className="visual-caption">INTERFACE STUDY / ANALYTICS</span></div>;
+  if (type === 'mobile') return <div className="project-visual visual-mobile" aria-hidden="true"><span className="mobile-orbit" /><div className="phone phone-back"><div className="phone-notch" /><div className="phone-greeting">Made for<br /><b>your everyday.</b></div><div className="phone-tile tile-warm"><Sparkles size={22} /><span>A little inspiration</span></div><div className="phone-lines"><span /><span /></div></div><div className="phone phone-front"><div className="phone-notch" /><div className="phone-greeting">Good things,<br /><b>in motion.</b></div><div className="phone-tile"><Layers3 size={29} /><span>Your next idea<br />starts here.</span></div><div className="phone-bottom"><span /><span /><span /></div></div><span className="visual-caption">INTERFACE STUDY / MOBILE</span></div>;
+  if (type === 'creative') return <div className="project-visual visual-creative" aria-hidden="true"><div className="creative-input"><span><Sparkles size={15} /> Creative studio</span><p>Every great creative<br />starts with an idea.</p><div className="prompt-line">Describe your next campaign… <ArrowUpRight size={14} /></div></div><div className="creative-output"><span>YOUR NEXT<br /><b>BIG IDEA.</b></span><span className="creative-asterisk">✳</span></div><span className="visual-caption">INTERFACE STUDY / GENERATIVE AI</span></div>;
+  return <div className="project-visual visual-pipeline" aria-hidden="true"><div className="pipeline-label">FROM RAW DATA TO REAL INSIGHT</div><div className="pipeline-nodes"><div><Code2 /><span>Collect</span></div><span className="pipeline-arrow">→</span><div><Layers3 /><span>Process</span></div><span className="pipeline-arrow">→</span><div><Database /><span>Deliver</span></div></div><div className="pipeline-line">{Array.from({ length: 12 }, (_, i) => <span key={i} />)}</div><span className="visual-caption">SYSTEM STUDY / DATA PIPELINE</span></div>;
 }
 
-/**
- * ProjectCard — isolated component for single project
- * Concept: component composition, props destructuring
- */
-function ProjectCard({ project }) {
-  return (
-    <GlowCard className="project-card" glowColor={project.color}>
-      <div className="project-card__inner">
-        {/* Header */}
-        <div className="project-card__top">
-          <div className="project-icon">{project.icon}</div>
-          <div className="project-card__links">
-            {project.featured && (
-              <span className="featured-badge">
-                <Star size={10} fill="currentColor" /> Featured
-              </span>
-            )}
-            <a href={project.github} target="_blank" rel="noopener noreferrer"
-               className="project-link" aria-label="GitHub">
-              <Github size={16} />
-            </a>
-            <a href={project.live} target="_blank" rel="noopener noreferrer"
-               className="project-link" aria-label="Live Demo">
-              <ExternalLink size={16} />
-            </a>
-          </div>
-        </div>
-
-        {/* Title & description */}
-        <h3 className="project-title font-display" style={{ color: project.color }}>
-          {project.title}
-        </h3>
-        <p className="project-subtitle font-mono">{project.subtitle}</p>
-        <p className="project-desc">{project.description}</p>
-
-        {/* Highlights */}
-        <ul className="project-highlights">
-          {project.highlights.map((h, i) => (
-            <li key={i} className="project-highlight font-mono">
-              <span style={{ color: project.color }}>→</span> {h}
-            </li>
-          ))}
-        </ul>
-
-        {/* Stack */}
-        <div className="project-stack">
-          {project.stack.map((s) => (
-            <Badge key={s} color={project.color} size="sm">{s}</Badge>
-          ))}
-        </div>
-      </div>
-
-      {/* Color accent bar */}
-      <div
-        className="project-accent-bar"
-        style={{ background: `linear-gradient(90deg, ${project.color}, ${project.accent})` }}
-      />
-    </GlowCard>
-  );
+export default function Projects() {
+  return <section className="section" id="projects"><div className="container">
+    <SectionHeading number="02" label="SELECTED WORK" title={<>Built to solve.<br /><span className="serif accent">Designed to feel right.</span></>} text="A few projects where frontend engineering, reliable data, and useful AI come together." />
+    <div className="projects-grid">{projects.map((project, index) => <article key={project.id} className="project-card"><ProjectVisual type={project.visual} /><div className="project-body"><div className="project-meta"><span>{project.category}</span><span>0{index + 1}</span></div><h3>{project.title}</h3><p>{project.description}</p><div className="tags">{project.stack.map(tag => <span key={tag}>{tag}</span>)}</div><details className="project-details"><summary>What I worked on <ChevronDown size={16} /></summary><ul>{project.highlights.map(highlight => <li key={highlight}><Check size={14} />{highlight}</li>)}</ul></details></div></article>)}</div>
+    <p className="project-note">Visuals are illustrative interface studies for the projects described in my resume.</p>
+    <div className="extensions-heading"><h3>Small extensions. Real-world reach.</h3><span>ALSO SHIPPED</span></div>
+    <div className="extensions-grid">{extensions.map(extension => <article className="extension-card" key={extension.title}><div className="extension-icon">{extension.icon === 'moon' ? <Moon size={22} /> : <Users size={22} />}</div><div className="extension-copy"><h4>{extension.title}</h4><p>{extension.description}</p></div><div className="extension-metric"><strong>{extension.metric}</strong><span>{extension.label}</span></div></article>)}</div>
+    <p className="data-note">Extension user figures reflect the resume, rather than live store counts.</p>
+  </div></section>;
 }
