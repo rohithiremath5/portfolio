@@ -1,6 +1,5 @@
 node_modules/
 .codex-tmp/
-src/data
 dist
 .env
 .env.local
