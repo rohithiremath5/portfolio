@@ -10,22 +10,28 @@ function initialTheme() {
   return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
 }
 export function ThemeProvider({ children }) {
-  const [theme, setTheme] = useState(initialTheme);
-  const [preference, setPreference] = useState(() => {
-    try { return ['light', 'dark'].includes(localStorage.getItem(STORAGE_KEY)); }
-    catch { return false; }
-  });
+  // Match build-time markup first; the head script applies the palette before paint.
+  const [theme, setTheme] = useState('light');
+  const [preference, setPreference] = useState(false);
+  const [initialized, setInitialized] = useState(false);
   useEffect(() => {
+    setTheme(initialTheme());
+    try { setPreference(['light', 'dark'].includes(localStorage.getItem(STORAGE_KEY))); }
+    catch { /* Follow the system when storage is unavailable. */ }
+    setInitialized(true);
+  }, []);
+  useEffect(() => {
+    if (!initialized) return;
     document.documentElement.dataset.theme = theme;
     document.documentElement.style.colorScheme = theme;
-  }, [theme]);
+  }, [theme, initialized]);
   useEffect(() => {
-    if (preference) return;
+    if (!initialized || preference) return;
     const media = window.matchMedia('(prefers-color-scheme: dark)');
     const followSystem = (event) => setTheme(event.matches ? 'dark' : 'light');
     media.addEventListener('change', followSystem);
     return () => media.removeEventListener('change', followSystem);
-  }, [preference]);
+  }, [preference, initialized]);
   const toggleTheme = useCallback(() => {
     const next = theme === 'dark' ? 'light' : 'dark';
     setTheme(next);

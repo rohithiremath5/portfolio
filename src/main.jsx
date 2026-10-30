@@ -1,12 +1,17 @@
 import { StrictMode } from 'react';
-import { createRoot } from 'react-dom/client';
+import { createRoot, hydrateRoot } from 'react-dom/client';
 import './index.css';
 import App from './App.jsx';
 
 // StrictMode helps catch common bugs in development
 // (double-invokes effects, etc.)
-createRoot(document.getElementById('root')).render(
+const root = document.getElementById('root');
+const app = (
   <StrictMode>
     <App />
   </StrictMode>
 );
+
+// Production contains build-time HTML; Vite development still starts empty.
+if (root.hasChildNodes()) hydrateRoot(root, app);
+else createRoot(root).render(app);

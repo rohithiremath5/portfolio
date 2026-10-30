@@ -1,5 +1,7 @@
 node_modules/
+.prerender-*/
 .codex-tmp/
 dist
 .env
 .env.local
+VERIFICATION.md

@@ -40,7 +40,7 @@ export default function Navbar() {
   }, [open]);
   return <header className="header">
     <nav className="container nav" aria-label="Main navigation">
-      <a className="wordmark" href="#home" aria-label="Rohit Hiremath, home">rh<span>.</span></a>
+      <a className="wordmark" href="#home" aria-label="rh. — Rohit Hiremath, home">rh<span>.</span></a>
       <div ref={menuRef} id="main-menu" className={`nav-links ${open ? 'is-open' : ''}`}>
         {navigation.map(([id, label]) => <a key={id} href={`#${id}`} aria-current={active === id ? 'location' : undefined} onClick={() => setOpen(false)}>{label}</a>)}
       </div>

@@ -4,6 +4,7 @@ import path from 'path'
 
 export default defineConfig({
   plugins: [react()],
+  define: { __BUILD_YEAR__: JSON.stringify(new Date().getUTCFullYear()) },
   resolve: {
     alias: {
       '@': path.resolve(__dirname, './src'),

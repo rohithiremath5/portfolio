@@ -21,7 +21,7 @@ Project visuals are illustrative studies, rather than screenshots of production 
 
 ## Technology
 
-The current page uses React 18, Vite 5, Lucide React icons, and CSS custom properties. Theme state is managed through React Context and browser storage. Google Fonts supplies DM Sans, DM Serif Display, and Space Mono, with local fallback fonts.
+The current page uses React 18, Vite 5, Lucide React icons, and CSS custom properties. Theme state is managed through React Context and browser storage. DM Sans, DM Serif Display, and Space Mono are hosted locally in `public/fonts/`, with fallback fonts and their SIL Open Font Licenses included.
 
 The application is a static frontend. It has no contact-form backend, automatic resume parser, or required API credentials. Some packages and components from the earlier version remain in the repository but are not used by the current page.
 
@@ -40,7 +40,7 @@ On Windows PowerShell, use `npm.cmd` in place of `npm` if the execution policy b
 
 ### Local content dependency
 
-The current components import portfolio content from resume. The local `src/data/` directory is ignored by Git, so a fresh checkout requires the content module and resume PDF to be supplied separately before running or building the application.
+The current components import portfolio content from `src/data/resumeData.js`. That module and the resume PDF are tracked by Git and must remain available to the build.
 
 The resume PDF is located at:
 
@@ -64,7 +64,7 @@ portfolio/
     ├── index.css               # Current page styles, theme tokens, breakpoints
     ├── context/
     │   └── ThemeContext.jsx    # Theme state and preference persistence
-    ├── data/                   # Local content module and resume PDF (Git-ignored)
+    ├── data/                   # Content module and resume PDF
     └── components/
         ├── layout/
         │   ├── Navbar.jsx      # Navigation, mobile menu, and theme toggle
@@ -119,9 +119,34 @@ npm run build
 npm run preview
 ```
 
-The build writes the static site to `dist/`. The preview command serves that output locally for review; it is not a production hosting service.
+The build first produces the Vite client assets, then builds a temporary React renderer and calls `renderToString` to insert the complete page into `dist/index.html`. The temporary renderer is removed, and no server is deployed. Run `npm run build` (rather than `vite build` directly) to include this step. The preview command serves that output locally for review; it is not a production hosting service.
 
-For deployment, run the build with the local content module and PDF available, then publish the generated `dist/` directory to a static host. Repository-based build environments also need those ignored content files supplied before the build.
+For Vercel, keep the Vite framework preset, set the build command to `npm run build`, and keep the output directory as `dist`. No functions, backend, or rewrite rules are required. Custom dashboard overrides that run `vite build` directly must be changed to `npm run build`.
+
+### Static HTML and hydration
+
+Hero, About, Projects, Experience, Skills (including education), and Contact are rendered during the build. `src/main.jsx` uses React 18 `hydrateRoot` for that HTML and `createRoot` for the empty development shell. Theme state starts with the same value on the server and client, then reads browser preferences in an effect. The existing head script applies the palette before paint. The footer year is shared by the client and renderer at build time; rebuilding updates it.
+
+Essential content, native project details, resume links, and email/phone links work without JavaScript. A `noscript` style exposes the mobile navigation and hides buttons that require JavaScript. Theme switching, mobile menu state, active-section tracking, and clipboard copying require JavaScript.
+
+The current App does not import the legacy Framer Motion sections, typing utilities, counter libraries, toast library, or `react-scroll`. Vite excludes these from the current client bundle. Those source files and dependencies remain available; adding them back requires checking SSR safety, deterministic first renders, and content visibility without JavaScript. In particular, avoid essential content with an initial `opacity: 0` and move browser API reads into effects.
+
+### Crawler access
+
+`public/robots.txt` permits crawling and links to `public/sitemap.xml`. The document includes description, indexing, Open Graph metadata, and a canonical URL using the confirmed public domain `https://portfolio-kappa-rosy-02l4ong3uk.vercel.app/`. If the production domain changes, update the canonical link, `og:url`, robots sitemap URL, and sitemap together.
+
+Prerendering does not bypass HTTP restrictions. In the Vercel dashboard, inspect **Settings → Deployment Protection** for the intended production domain, including authentication, passwords, and firewall/bot rules. Preview URLs may be protected independently. Check the public URL without a Vercel login and inspect status, redirects, HTML body, robots.txt, and `X-Robots-Tag` headers. A login/challenge page, 401/403 response, or `noindex` response still prevents access. This repository cannot establish the live dashboard settings.
+
+### Automated verification
+
+```sh
+npm run build
+npm test
+```
+
+The Node tests check static section text, generated asset URLs, robots.txt, and absence of a deployed renderer. For optional browser checks, install Python Playwright in your tooling environment, run `npm run preview -- --host 127.0.0.1`, then run `python scripts/browser-check.py`. The script uses installed Chrome (or `CHROME_PATH`, or Playwright Chromium). It checks retained DOM nodes during hydration, runtime errors, theme behavior, navigation, responsive overflow, clipboard, PDF download, and content with JavaScript disabled.
+
+Font faces are included in the main stylesheet instead of chained through a third-party CSS `@import`. The same fonts are served as local WOFF2 Latin subsets, with `font-display: swap`, preloads for the two primary faces, and the existing fallback fonts. Add subsets if introducing languages outside Latin. The build inlines the small stylesheet (about 7 kB compressed) into the HTML to remove a measured render-blocking request. This single-page tradeoff increases HTML size and gives up separate stylesheet caching. CSS source files and development behavior remain unchanged. The current app has a small single client bundle; splitting static sections behind client-only lazy boundaries would add requests and risk omitting crawler content. Review measured production bottlenecks before adding chunk boundaries.
 
 ## Review checklist
 
@@ -133,4 +158,4 @@ For deployment, run the build with the local content module and PDF available, t
 - Verify contact links and the copy-email action.
 - Run the production build after application changes.
 
-There are currently no test or lint scripts defined in `package.json`.
+`npm test` validates the generated production output, so build first. There is no lint script.

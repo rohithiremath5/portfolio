@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://portfolio-kappa-rosy-02l4ong3uk.vercel.app/sitemap.xml
