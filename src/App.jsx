@@ -7,18 +7,22 @@ import Projects from './components/sections/Projects';
 import Experience from './components/sections/Experience';
 import Skills from './components/sections/Skills';
 import Contact from './components/sections/Contact';
+import CredibilityStrip from './components/sections/CredibilityStrip';
+import Education from './components/sections/Education';
 
 export default function App() {
   return (
     <ThemeProvider>
       <a href="#main-content" className="skip-link">Skip to content</a>
       <Navbar />
-      <main id="main-content">
+      <main id="main-content" tabIndex={-1}>
         <Hero />
-        <About />
+        <CredibilityStrip />
         <Projects />
         <Experience />
+        <About />
         <Skills />
+        <Education />
         <Contact />
       </main>
       <Footer />

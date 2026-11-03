@@ -3,7 +3,7 @@ import { ArrowUpRight, Menu, Moon, Sun, X } from 'lucide-react';
 import { useThemeState } from '../../context/ThemeContext';
 import { personalInfo } from '../../data/resumeData';
 
-const navigation = [['about', 'About'], ['projects', 'Work'], ['experience', 'Experience'], ['skills', 'Skills'], ['contact', 'Contact']];
+const navigation = [['projects', 'Work'], ['experience', 'Experience'], ['about', 'About'], ['skills', 'Skills'], ['contact', 'Contact']];
 
 function ThemeToggle() {
   const { theme, toggleTheme } = useThemeState();
@@ -15,8 +15,21 @@ function ThemeToggle() {
 export default function Navbar() {
   const [open, setOpen] = useState(false);
   const [active, setActive] = useState('');
+  const [scrolled, setScrolled] = useState(false);
   const menuRef = useRef(null);
   const triggerRef = useRef(null);
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 24);
+    onScroll();
+    window.addEventListener('scroll', onScroll, { passive: true });
+    return () => window.removeEventListener('scroll', onScroll);
+  }, []);
+  useEffect(() => {
+    const media = window.matchMedia('(min-width: 901px)');
+    const onChange = () => { if (media.matches) setOpen(false); };
+    media.addEventListener('change', onChange);
+    return () => media.removeEventListener('change', onChange);
+  }, []);
   useEffect(() => {
     const observer = new IntersectionObserver((entries) => {
       const visible = entries.filter(entry => entry.isIntersecting).sort((a, b) => b.intersectionRatio - a.intersectionRatio);
@@ -30,6 +43,7 @@ export default function Navbar() {
   }, []);
   useEffect(() => {
     if (!open) return;
+    menuRef.current?.querySelector('a')?.focus();
     const close = (event) => {
       if (event.key === 'Escape') { setOpen(false); triggerRef.current?.focus(); }
       if (event.type === 'pointerdown' && !menuRef.current?.contains(event.target) && !triggerRef.current?.contains(event.target)) setOpen(false);
@@ -38,11 +52,16 @@ export default function Navbar() {
     document.addEventListener('pointerdown', close);
     return () => { document.removeEventListener('keydown', close); document.removeEventListener('pointerdown', close); };
   }, [open]);
-  return <header className="header">
+  return <header className={`header ${scrolled ? 'is-scrolled' : ''}`}>
     <nav className="container nav" aria-label="Main navigation">
       <a className="wordmark" href="#home" aria-label="rh. — Rohit Hiremath, home">rh<span>.</span></a>
       <div ref={menuRef} id="main-menu" className={`nav-links ${open ? 'is-open' : ''}`}>
-        {navigation.map(([id, label]) => <a key={id} href={`#${id}`} aria-current={active === id ? 'location' : undefined} onClick={() => setOpen(false)}>{label}</a>)}
+        {navigation.map(([id, label]) => <a key={id} href={`#${id}`} aria-current={active === id ? 'location' : undefined} onClick={() => {
+          setOpen(false);
+          const section = document.getElementById(id);
+          section?.setAttribute('tabindex', '-1');
+          section?.focus({ preventScroll: true });
+        }}>{label}</a>)}
       </div>
       <div className="nav-actions">
         <ThemeToggle />

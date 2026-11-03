@@ -1,0 +1,92 @@
+[
+  {
+    "file": "react.svg",
+    "source": "https://raw.githubusercontent.com/devicons/devicon/32fe1d3b3f36ad11f90ab94f7db59738139c2bf6/icons/react/react-original.svg",
+    "bytes": 2387
+  },
+  {
+    "file": "nextjs.svg",
+    "source": "https://raw.githubusercontent.com/devicons/devicon/32fe1d3b3f36ad11f90ab94f7db59738139c2bf6/icons/nextjs/nextjs-original.svg",
+    "bytes": 749
+  },
+  {
+    "file": "tailwindcss.svg",
+    "source": "https://raw.githubusercontent.com/devicons/devicon/32fe1d3b3f36ad11f90ab94f7db59738139c2bf6/icons/tailwindcss/tailwindcss-original.svg",
+    "bytes": 689
+  },
+  {
+    "file": "javascript.svg",
+    "source": "https://raw.githubusercontent.com/devicons/devicon/32fe1d3b3f36ad11f90ab94f7db59738139c2bf6/icons/javascript/javascript-original.svg",
+    "bytes": 1144
+  },
+  {
+    "file": "python.svg",
+    "source": "https://raw.githubusercontent.com/devicons/devicon/32fe1d3b3f36ad11f90ab94f7db59738139c2bf6/icons/python/python-original.svg",
+    "bytes": 2300
+  },
+  {
+    "file": "typescript.svg",
+    "source": "https://raw.githubusercontent.com/devicons/devicon/32fe1d3b3f36ad11f90ab94f7db59738139c2bf6/icons/typescript/typescript-original.svg",
+    "bytes": 943
+  },
+  {
+    "file": "html5.svg",
+    "source": "https://raw.githubusercontent.com/devicons/devicon/32fe1d3b3f36ad11f90ab94f7db59738139c2bf6/icons/html5/html5-original.svg",
+    "bytes": 607
+  },
+  {
+    "file": "css3.svg",
+    "source": "https://raw.githubusercontent.com/devicons/devicon/32fe1d3b3f36ad11f90ab94f7db59738139c2bf6/icons/css3/css3-original.svg",
+    "bytes": 778
+  },
+  {
+    "file": "nodejs.svg",
+    "source": "https://raw.githubusercontent.com/devicons/devicon/32fe1d3b3f36ad11f90ab94f7db59738139c2bf6/icons/nodejs/nodejs-original.svg",
+    "bytes": 1806
+  },
+  {
+    "file": "postgresql.svg",
+    "source": "https://raw.githubusercontent.com/devicons/devicon/32fe1d3b3f36ad11f90ab94f7db59738139c2bf6/icons/postgresql/postgresql-original.svg",
+    "bytes": 9178
+  },
+  {
+    "file": "postman.svg",
+    "source": "https://raw.githubusercontent.com/devicons/devicon/32fe1d3b3f36ad11f90ab94f7db59738139c2bf6/icons/postman/postman-original.svg",
+    "bytes": 3729
+  },
+  {
+    "file": "googlecloud.svg",
+    "source": "https://raw.githubusercontent.com/devicons/devicon/32fe1d3b3f36ad11f90ab94f7db59738139c2bf6/icons/googlecloud/googlecloud-original.svg",
+    "bytes": 782
+  },
+  {
+    "file": "amazonwebservices.svg",
+    "source": "https://raw.githubusercontent.com/devicons/devicon/32fe1d3b3f36ad11f90ab94f7db59738139c2bf6/icons/amazonwebservices/amazonwebservices-original.svg",
+    "bytes": 3743
+  },
+  {
+    "file": "git.svg",
+    "source": "https://raw.githubusercontent.com/devicons/devicon/32fe1d3b3f36ad11f90ab94f7db59738139c2bf6/icons/git/git-original.svg",
+    "bytes": 778
+  },
+  {
+    "file": "github.svg",
+    "source": "https://raw.githubusercontent.com/devicons/devicon/32fe1d3b3f36ad11f90ab94f7db59738139c2bf6/icons/github/github-original.svg",
+    "bytes": 1866
+  },
+  {
+    "file": "linux.svg",
+    "source": "https://raw.githubusercontent.com/simple-icons/simple-icons/11.15.0/icons/linux.svg",
+    "bytes": 5463
+  },
+  {
+    "file": "cssmodules.svg",
+    "source": "https://raw.githubusercontent.com/simple-icons/simple-icons/11.15.0/icons/cssmodules.svg",
+    "bytes": 3901
+  },
+  {
+    "file": "openai.svg",
+    "source": "https://raw.githubusercontent.com/simple-icons/simple-icons/11.15.0/icons/openai.svg",
+    "bytes": 1570
+  }
+]

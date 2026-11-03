@@ -1,21 +1,26 @@
-import { ArrowUpRight, Check, ChevronDown, Code2, Database, Layers3, Moon, Sparkles, Users } from 'lucide-react';
+import { Check, ChevronDown, Moon, Users } from 'lucide-react';
 import { projects, extensions } from '../../data/resumeData';
+import { siteCopy } from '../../data/siteCopy';
 import SectionHeading from '../ui/SectionHeading';
+import ProjectVisual from './ProjectVisual';
 
-function ProjectVisual({ type }) {
-  if (type === 'analytics') return <div className="project-visual visual-analytics" aria-hidden="true"><div className="mini-dashboard"><aside><span className="mini-logo">◈</span><span /><span /><span /><span /></aside><div className="mini-dashboard-content"><div className="mini-toolbar"><b>Overview</b><span>This month <ChevronDown size={9} /></span></div><div className="mini-metrics"><div><span>Performance</span><strong>↗</strong></div><div><span>Engagement</span><strong>↗</strong></div><div><span>Reach</span><strong>↗</strong></div></div><div className="mini-chart"><div className="chart-title">Performance overview <span>● All channels</span></div><svg viewBox="0 0 350 80" preserveAspectRatio="none"><path d="M0 70 L25 62 L50 67 L75 37 L100 45 L125 33 L150 42 L175 20 L200 28 L225 12 L250 22 L275 9 L300 17 L325 4 L350 8 L350 80 L0 80Z" fill="var(--chart-fill)" /><path d="M0 70 L25 62 L50 67 L75 37 L100 45 L125 33 L150 42 L175 20 L200 28 L225 12 L250 22 L275 9 L300 17 L325 4 L350 8" fill="none" stroke="var(--accent)" strokeWidth="2.5" /></svg></div></div></div><span className="visual-caption">INTERFACE STUDY / ANALYTICS</span></div>;
-  if (type === 'mobile') return <div className="project-visual visual-mobile" aria-hidden="true"><span className="mobile-orbit" /><div className="phone phone-back"><div className="phone-notch" /><div className="phone-greeting">Made for<br /><b>your everyday.</b></div><div className="phone-tile tile-warm"><Sparkles size={22} /><span>A little inspiration</span></div><div className="phone-lines"><span /><span /></div></div><div className="phone phone-front"><div className="phone-notch" /><div className="phone-greeting">Good things,<br /><b>in motion.</b></div><div className="phone-tile"><Layers3 size={29} /><span>Your next idea<br />starts here.</span></div><div className="phone-bottom"><span /><span /><span /></div></div><span className="visual-caption">INTERFACE STUDY / MOBILE</span></div>;
-  if (type === 'creative') return <div className="project-visual visual-creative" aria-hidden="true"><div className="creative-input"><span><Sparkles size={15} /> Creative studio</span><p>Every great creative<br />starts with an idea.</p><div className="prompt-line">Describe your next campaign… <ArrowUpRight size={14} /></div></div><div className="creative-output"><span>YOUR NEXT<br /><b>BIG IDEA.</b></span><span className="creative-asterisk">✳</span></div><span className="visual-caption">INTERFACE STUDY / GENERATIVE AI</span></div>;
-  return <div className="project-visual visual-pipeline" aria-hidden="true"><div className="pipeline-label">FROM RAW DATA TO REAL INSIGHT</div><div className="pipeline-nodes"><div><Code2 /><span>Collect</span></div><span className="pipeline-arrow">→</span><div><Layers3 /><span>Process</span></div><span className="pipeline-arrow">→</span><div><Database /><span>Deliver</span></div></div><div className="pipeline-line">{Array.from({ length: 12 }, (_, i) => <span key={i} />)}</div><span className="visual-caption">SYSTEM STUDY / DATA PIPELINE</span></div>;
+function ProjectCard({ project, index }) {
+  return <article className="project-card"><ProjectVisual type={project.visual} /><div className="project-body">
+    <div className="project-meta"><span>{project.category}</span><span>0{index + 1} / 04</span></div>
+    <h3>{project.title}</h3><p>{project.description}</p>
+    <ul className="tags">{project.stack.map(tag => <li key={tag}>{tag}</li>)}</ul>
+    <details className="project-details" open><summary>What I worked on <ChevronDown size={16} /></summary><ul>{project.highlights.map(highlight => <li key={highlight}><Check size={15} aria-hidden="true" /><span>{highlight}</span></li>)}</ul></details>
+  </div></article>;
 }
 
 export default function Projects() {
-  return <section className="section" id="projects"><div className="container">
-    <SectionHeading number="02" label="SELECTED WORK" title={<>Built to solve.<br /><span className="serif accent">Designed to feel right.</span></>} text="A few projects where frontend engineering, reliable data, and useful AI come together." />
-    <div className="projects-grid">{projects.map((project, index) => <article key={project.id} className="project-card"><ProjectVisual type={project.visual} /><div className="project-body"><div className="project-meta"><span>{project.category}</span><span>0{index + 1}</span></div><h3>{project.title}</h3><p>{project.description}</p><div className="tags">{project.stack.map(tag => <span key={tag}>{tag}</span>)}</div><details className="project-details"><summary>What I worked on <ChevronDown size={16} /></summary><ul>{project.highlights.map(highlight => <li key={highlight}><Check size={14} />{highlight}</li>)}</ul></details></div></article>)}</div>
-    <p className="project-note">Visuals are illustrative interface studies for the projects described in my resume.</p>
-    <div className="extensions-heading"><h3>Small extensions. Real-world reach.</h3><span>ALSO SHIPPED</span></div>
-    <div className="extensions-grid">{extensions.map(extension => <article className="extension-card" key={extension.title}><div className="extension-icon">{extension.icon === 'moon' ? <Moon size={22} /> : <Users size={22} />}</div><div className="extension-copy"><h4>{extension.title}</h4><p>{extension.description}</p></div><div className="extension-metric"><strong>{extension.metric}</strong><span>{extension.label}</span></div></article>)}</div>
-    <p className="data-note">Extension user figures reflect the resume, rather than live store counts.</p>
+  return <section className="section" id="projects" aria-labelledby="projects-title"><div className="container">
+    <SectionHeading id="projects-title" number="01" label={siteCopy.work.label} title={siteCopy.work.title} text={siteCopy.work.introduction} />
+    <div className="projects-grid">{projects.map((project, index) => <ProjectCard key={project.id} project={project} index={index} />)}</div>
+    <p className="project-note">{siteCopy.work.disclaimer}</p>
+    <div className="extensions" id="extensions"><div className="extensions-heading"><div><p className="eyebrow">ALSO SHIPPED</p><h3>{siteCopy.extensions.title}</h3></div><span className="extension-heading-mark" aria-hidden="true">↗</span></div>
+      <div className="extensions-grid">{extensions.map(extension => <article className="extension-card" key={extension.title}><div className="extension-top"><span className="extension-icon" aria-hidden="true">{extension.icon === 'moon' ? <Moon size={23} /> : <Users size={23} />}</span><div className="extension-metric"><strong>{extension.metric}</strong><span>{extension.label}</span></div></div><h4>{extension.title}</h4><p>{extension.description}</p></article>)}</div>
+      <p className="data-note">{siteCopy.extensions.disclaimer}</p>
+    </div>
   </div></section>;
 }
