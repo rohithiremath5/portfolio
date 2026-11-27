@@ -9,6 +9,7 @@ import Skills from './components/sections/Skills';
 import Contact from './components/sections/Contact';
 import CredibilityStrip from './components/sections/CredibilityStrip';
 import Education from './components/sections/Education';
+import PortfolioChatbot from './components/chatbot/PortfolioChatbot';
 
 export default function App() {
   return (
@@ -26,6 +27,7 @@ export default function App() {
         <Contact />
       </main>
       <Footer />
+      <PortfolioChatbot />
     </ThemeProvider>
   );
 }

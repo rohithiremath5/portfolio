@@ -5,11 +5,16 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
+    "dev:full": "node scripts/dev-full.mjs",
     "build": "node scripts/build.mjs",
-    "test": "node --test scripts/prerender.test.mjs",
+    "test": "node --test scripts/prerender.test.mjs scripts/chatbot.test.mjs",
     "preview": "vite preview"
   },
+  "engines": {
+    "node": "22.x"
+  },
   "dependencies": {
+    "@google/genai": "^3.6.1",
     "lucide-react": "^0.383.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"

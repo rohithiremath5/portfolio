@@ -3,6 +3,7 @@ import { mkdtemp, readFile, rm, writeFile } from 'node:fs/promises';
 import { resolve } from 'node:path';
 import { pathToFileURL } from 'node:url';
 import { generatePublic } from './generate-public.mjs';
+import { writeResumeContext } from '../server/chatbot/resumeContext.js';
 
 // Both bundles share the same clock snapshot, even across a year boundary.
 const define = { __BUILD_YEAR__: JSON.stringify(new Date().getUTCFullYear()) };
@@ -21,6 +22,7 @@ try {
   let html = template.replace(marker, () => `<div id="root">${render()}</div>`);
   const canonical = template.match(/rel="canonical" href="([^"]+)"/)[1];
   const { structuredData } = await generatePublic(portfolioContent, canonical);
+  await writeResumeContext(portfolioContent);
   const json = JSON.stringify(structuredData).replaceAll('<', '\\u003c');
   html = html.replace('</head>', `<script type="application/ld+json">${json}</script></head>`);
   // This single-page site's small stylesheet is inlined. Inlining it

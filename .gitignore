@@ -4,4 +4,10 @@ node_modules/
 dist
 .env
 .env.local
+.env.*.local
+.env.production
+.env.development
+server/chatbot/generated-resume.json
 VERIFICATION.md
+.vercel
+.env*

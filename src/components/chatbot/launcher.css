@@ -1,0 +1,5 @@
+.chat-launcher { position: fixed; z-index: 61; right: max(20px, env(safe-area-inset-right)); bottom: max(20px, env(safe-area-inset-bottom)); display: grid; place-items: center; width: 52px; height: 52px; border: 1px solid var(--border-strong); border-radius: var(--radius); background: var(--surface); color: var(--accent); box-shadow: var(--shadow); transition: transform .2s, border-color .2s; }
+.chat-launcher:hover { transform: translateY(-2px); border-color: var(--accent); }
+.chat-loading { position: fixed; z-index: 60; bottom: 84px; right: 20px; padding: 16px; background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-small); color: var(--muted); font-size: 13px; }
+@media (max-width: 480px) { .chat-launcher { right: max(16px, env(safe-area-inset-right)); bottom: max(16px, env(safe-area-inset-bottom)); } }
+@media (prefers-reduced-motion: reduce) { .chat-launcher { transition: none; } .chat-launcher:hover { transform: none; } }
