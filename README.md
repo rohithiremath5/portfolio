@@ -76,8 +76,8 @@ JSON, Markdown, XML, TXT, and PDF files.
 
 ## Content preservation
 
-`tests/content-baseline.json` freezes the pre-redesign professional data, 74 visible
-statements, 12 unique functional links, and SHA-256 fingerprints of the original
+`tests/content-baseline.json` freezes the reviewed professional data, visible
+statements, functional links, and SHA-256 fingerprints of the current
 content module and PDF. Tests compare those against static HTML, JSON, and Markdown.
 If you intentionally update your profile later, review and update the baseline in
 the same change. Replacing the PDF does not automatically parse or rewrite content.

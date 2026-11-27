@@ -43,14 +43,14 @@ const text = normalize(html.replace(/<script\b[^>]*>[\s\S]*?<\/script>/g, '').re
   .replace(/<[^>]*>/g, ' ').replace(/&amp;/g, '&').replace(/&#x27;/g, "'").replace(/&quot;/g, '"').replace(/&lt;/g, '<').replace(/&gt;/g, '>'));
 const collectStrings = (value, skip = []) => typeof value === 'string' ? [value] : Array.isArray(value) ? value.flatMap(item => collectStrings(item, skip)) : value && typeof value === 'object' ? Object.entries(value).filter(([key]) => !skip.includes(key)).flatMap(([, item]) => collectStrings(item, skip)) : [];
 
-test('original content module and resume PDF are byte-for-byte unchanged', async () => {
+test('content module and resume PDF match the reviewed baseline', async () => {
   for (const [file, expected] of Object.entries(baseline.sha256)) {
     assert.equal(createHash('sha256').update(await readFile(file)).digest('hex'), expected, file);
   }
   assert.deepEqual(await readFile('dist/resume.pdf'), await readFile('src/data/Rohit_N_Hiremath_Frontend_developer.pdf'));
 });
 
-test('every original visible statement and link survives in production HTML', () => {
+test('every reviewed visible statement and link appears in production HTML', () => {
   for (let statement of baseline.visibleStatements) {
     statement = statement.replace(/^(?:\d{2}|\+) /, ''); // Section numbering is presentation.
     statement = statement.replace(/© \d{4}/, `© ${new Date().getUTCFullYear()}`);
@@ -90,6 +90,8 @@ test('semantic profile, open project details, structured data and social metadat
   assert.equal(json.name, profile.name);
   assert.equal(json.jobTitle, profile.title);
   assert.equal(json.description, profile.summary);
+  assert.equal((html.match(/class="current-pill"/g) || []).length, profile.experience.filter(item => item.type === 'Current role').length);
+  assert.equal((html.match(/class="timeline-dot is-current"/g) || []).length, profile.experience.filter(item => item.type === 'Current role').length);
   assert.deepEqual(json.sameAs, [profile.professionalLinks.linkedin, profile.professionalLinks.github]);
   assert.ok(!('image' in json));
   assert.equal((html.match(/<details[^>]*open=""/g) || []).length, 4);

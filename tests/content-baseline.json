@@ -1,5 +1,5 @@
 {
-  "recorded": "2026-11-04",
+  "recorded": "2026-11-27",
   "content": {
     "education": [
       {
@@ -18,12 +18,12 @@
         "id": 1,
         "role": "Software Engineer",
         "company": "Enterprisebot",
-        "duration": "May 2026 — Present",
-        "type": "Current role",
+        "duration": "May 2026 — Jul 2026",
+        "type": "Past role",
         "highlights": [
-          "Working on Python-based Retrieval-Augmented Generation systems and document retrieval workflows.",
-          "Working with DocBrain knowledge bases to understand how documents are processed, organized, and made available for retrieval.",
-          "Gaining hands-on experience with document chunking strategies and vector databases for AI-powered knowledge systems."
+          "Worked on Python-based Retrieval-Augmented Generation systems and document retrieval workflows.",
+          "Worked with DocBrain knowledge bases to understand how documents are processed, organized, and made available for retrieval.",
+          "Gained hands-on experience with document chunking strategies and vector databases for AI-powered knowledge systems."
         ]
       },
       {
@@ -35,8 +35,9 @@
         "type": "Full-time",
         "highlights": [
           "Led Next.js landing page development and optimization, improving performance, SEO, and user experience.",
-          "Designed analytics dashboards with React, GA4, and Search Console APIs, and owned a reusable React and Tailwind CSS component system.",
-          "Integrated GPT-4 ad generation features and partnered with designers to deliver responsive interfaces across Chrome, Firefox, and Safari.",
+          "Designed analytics dashboards with React, GA4, and Search Console APIs, handling JSON API responses, and owned a reusable React and Tailwind CSS component system.",
+          "Integrated GPT-4 ad generation features and partnered with designers to deliver responsive interfaces.",
+          "Debugged UI/UX issues through cross-browser testing and root-cause analysis, ensuring a consistent experience across Chrome, Firefox, and Safari.",
           "Participated in Agile sprints, GitHub code reviews, and Git branching workflows."
         ]
       },
@@ -80,8 +81,8 @@
       "linkedin": "https://www.linkedin.com/in/rohit-n-hiremath",
       "github": "https://github.com/rohithiremath5",
       "resume": "/resume",
-      "bio": "I’m a software engineer with 3 years of experience building web applications, analytics platforms, and AI-enabled features. I bring React and Next.js interfaces to life, connect them to reliable APIs, and turn complex business requirements into usable products.",
-      "currentFocus": "At Enterprisebot, I’m working with Python-based RAG systems, DocBrain knowledge bases, document chunking, and vector databases — exploring how the right information reaches the right answer."
+      "bio": "I’m a software engineer with 3 years of experience building web applications, analytics platforms, and AI-enabled features. I work with JavaScript, React, Next.js, Node.js, JSON, and REST APIs, debug UI and API issues, and collaborate across teams to turn business requirements into production-ready features.",
+      "currentFocus": "At Enterprisebot, I worked with Python-based RAG systems, DocBrain knowledge bases, document chunking, and vector databases — exploring how the right information reaches the right answer."
     },
     "projects": [
       {
@@ -146,10 +147,10 @@
           "Puppeteer",
           "PostgreSQL"
         ],
-        "description": "Backend pipelines processing large volumes of ad data for real-time frontend dashboards. I contributed to data parsing and query optimization to improve delivery speed for the analytics UI.",
+        "description": "Backend pipelines processing large volumes of ad data for real-time frontend dashboards. I contributed to data parsing and SQL query optimization with PostgreSQL to improve delivery speed for the analytics UI.",
         "highlights": [
           "Ad data processing",
-          "Query optimization",
+          "SQL query optimization",
           "Dashboard data availability"
         ]
       }
@@ -165,10 +166,12 @@
       ],
       "languages": [
         "JavaScript (ES6+)",
+        "JSON",
         "Python",
         "TypeScript (Basic)",
         "HTML5",
-        "CSS3"
+        "CSS3",
+        "SQL"
       ],
       "backend": [
         "Node.js",
@@ -182,7 +185,9 @@
         "Knowledge Bases",
         "Vector Databases",
         "Generative AI",
-        "OpenAI API"
+        "OpenAI API",
+        "LangChain",
+        "LangGraph"
       ],
       "tools": [
         "GCP",
@@ -212,8 +217,8 @@
     ]
   },
   "sha256": {
-    "src/data/resumeData.js": "86a93137a2aa78b8f17e5db94877aa8443e3109824347eb6d22c3778feda3e1f",
-    "src/data/Rohit_N_Hiremath_Frontend_developer.pdf": "1f21af5fa85d86337d24d5339bd25d88edbacecde6f7ba30a5e6222c43ae70d5"
+    "src/data/resumeData.js": "581163c921896060e0a7e46318813e7edfdec53797b80a55a7df0ade492f484e",
+    "src/data/Rohit_N_Hiremath_Frontend_developer.pdf": "1af3b36196c9f9743baf9d3b352ba6683e4b8c17b56bbb8207aac48c910ead6e"
   },
   "visibleStatements": [
     "Hey, I’m Rohit",
@@ -221,8 +226,8 @@
     "I build interfaces that make complex things feel simple. React, Next.js, and a growing curiosity for AI.",
     "01 THE PERSON BEHIND THE CODE",
     "A builder at heart. Curious by default.",
-    "I’m a software engineer with 3 years of experience building web applications, analytics platforms, and AI-enabled features. I bring React and Next.js interfaces to life, connect them to reliable APIs, and turn complex business requirements into usable products.",
-    "At Enterprisebot, I’m working with Python-based RAG systems, DocBrain knowledge bases, document chunking, and vector databases — exploring how the right information reaches the right answer.",
+    "I’m a software engineer with 3 years of experience building web applications, analytics platforms, and AI-enabled features. I work with JavaScript, React, Next.js, Node.js, JSON, and REST APIs, debug UI and API issues, and collaborate across teams to turn business requirements into production-ready features.",
+    "At Enterprisebot, I worked with Python-based RAG systems, DocBrain knowledge bases, document chunking, and vector databases — exploring how the right information reaches the right answer.",
     "Experience and user figures from my resume.",
     "02 SELECTED WORK",
     "Built to solve. Designed to feel right.",
@@ -243,9 +248,9 @@
     "GPT-4 and vector search",
     "End-to-end frontend integration",
     "Distributed Ad Data Ingestion System",
-    "Backend pipelines processing large volumes of ad data for real-time frontend dashboards. I contributed to data parsing and query optimization to improve delivery speed for the analytics UI.",
+    "Backend pipelines processing large volumes of ad data for real-time frontend dashboards. I contributed to data parsing and SQL query optimization with PostgreSQL to improve delivery speed for the analytics UI.",
     "Ad data processing",
-    "Query optimization",
+    "SQL query optimization",
     "Dashboard data availability",
     "Visuals are illustrative interface studies for the projects described in my resume.",
     "Small extensions. Real-world reach.",
@@ -256,17 +261,18 @@
     "Extension user figures reflect the resume, rather than live store counts.",
     "03 THE JOURNEY SO FAR",
     "Learning. Building. Moving forward.",
-    "From browser extensions to production interfaces, and now AI-powered knowledge systems.",
+    "From browser extensions and production interfaces to AI-powered knowledge systems.",
     "Software Engineer",
     "Enterprisebot",
-    "Working on Python-based Retrieval-Augmented Generation systems and document retrieval workflows.",
-    "Working with DocBrain knowledge bases to understand how documents are processed, organized, and made available for retrieval.",
-    "Gaining hands-on experience with document chunking strategies and vector databases for AI-powered knowledge systems.",
+    "Worked on Python-based Retrieval-Augmented Generation systems and document retrieval workflows.",
+    "Worked with DocBrain knowledge bases to understand how documents are processed, organized, and made available for retrieval.",
+    "Gained hands-on experience with document chunking strategies and vector databases for AI-powered knowledge systems.",
     "Software Engineer — Frontend",
     "AdSpyder / GSTECH Technology Pvt Ltd",
     "Led Next.js landing page development and optimization, improving performance, SEO, and user experience.",
-    "Designed analytics dashboards with React, GA4, and Search Console APIs, and owned a reusable React and Tailwind CSS component system.",
-    "Integrated GPT-4 ad generation features and partnered with designers to deliver responsive interfaces across Chrome, Firefox, and Safari.",
+    "Designed analytics dashboards with React, GA4, and Search Console APIs, handling JSON API responses, and owned a reusable React and Tailwind CSS component system.",
+    "Integrated GPT-4 ad generation features and partnered with designers to deliver responsive interfaces.",
+    "Debugged UI/UX issues through cross-browser testing and root-cause analysis, ensuring a consistent experience across Chrome, Firefox, and Safari.",
     "Participated in Agile sprints, GitHub code reviews, and Git branching workflows.",
     "Chrome Extension Developer Intern",
     "AdSpyder / GSTECH Technology Pvt Ltd",
@@ -299,7 +305,7 @@
     "#main-content",
     "#projects",
     "#skills",
-    "/assets/Rohit_N_Hiremath_Frontend_developer-BtkDhUeH.pdf",
+    "/assets/Rohit_N_Hiremath_Frontend_developer-C4lUBTqb.pdf",
     "https://github.com/rohithiremath5",
     "https://www.linkedin.com/in/rohit-n-hiremath",
     "mailto:rohithiremath05@gmail.com",

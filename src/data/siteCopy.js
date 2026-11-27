@@ -19,7 +19,7 @@ export const siteCopy = {
   },
   experience: {
     label: 'THE JOURNEY SO FAR', title: 'Learning. Building. Moving forward.',
-    introduction: 'From browser extensions to production interfaces, and now AI-powered knowledge systems.',
+    introduction: 'From browser extensions and production interfaces to AI-powered knowledge systems.',
   },
   skills: {
     label: 'MY TOOLKIT', title: 'The right tools. A thoughtful approach.',

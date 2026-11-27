@@ -11,26 +11,27 @@ export const personalInfo = {
   linkedin: 'https://www.linkedin.com/in/rohit-n-hiremath',
   github: 'https://github.com/rohithiremath5',
   resume: resumePdf,
-  bio: 'I’m a software engineer with 3 years of experience building web applications, analytics platforms, and AI-enabled features. I bring React and Next.js interfaces to life, connect them to reliable APIs, and turn complex business requirements into usable products.',
-  currentFocus: 'At Enterprisebot, I’m working with Python-based RAG systems, DocBrain knowledge bases, document chunking, and vector databases — exploring how the right information reaches the right answer.',
+  bio: 'I’m a software engineer with 3 years of experience building web applications, analytics platforms, and AI-enabled features. I work with JavaScript, React, Next.js, Node.js, JSON, and REST APIs, debug UI and API issues, and collaborate across teams to turn business requirements into production-ready features.',
+  currentFocus: 'At Enterprisebot, I worked with Python-based RAG systems, DocBrain knowledge bases, document chunking, and vector databases — exploring how the right information reaches the right answer.',
 };
 export const skills = {
   frontend: ['React.js', 'Next.js', 'React Native', 'Tailwind CSS', 'CSS Modules', 'Responsive Design'],
-  languages: ['JavaScript (ES6+)', 'Python', 'TypeScript (Basic)', 'HTML5', 'CSS3'],
+  languages: ['JavaScript (ES6+)', 'JSON', 'Python', 'TypeScript (Basic)', 'HTML5', 'CSS3', 'SQL'],
   backend: ['Node.js', 'RESTful APIs', 'PostgreSQL', 'API Integration', 'Postman'],
-  ai: ['RAG', 'Knowledge Bases', 'Vector Databases', 'Generative AI', 'OpenAI API'],
+  ai: ['RAG', 'Knowledge Bases', 'Vector Databases', 'Generative AI', 'OpenAI API', 'LangChain', 'LangGraph'],
   tools: ['GCP', 'AWS', 'Git', 'GitHub', 'Chrome Extension APIs', 'Linux'],
 };
 export const experiences = [
-  { id: 1, role: 'Software Engineer', company: 'Enterprisebot', duration: 'May 2026 — Present', type: 'Current role', highlights: [
-    'Working on Python-based Retrieval-Augmented Generation systems and document retrieval workflows.',
-    'Working with DocBrain knowledge bases to understand how documents are processed, organized, and made available for retrieval.',
-    'Gaining hands-on experience with document chunking strategies and vector databases for AI-powered knowledge systems.',
+  { id: 1, role: 'Software Engineer', company: 'Enterprisebot', duration: 'May 2026 — Jul 2026', type: 'Past role', highlights: [
+    'Worked on Python-based Retrieval-Augmented Generation systems and document retrieval workflows.',
+    'Worked with DocBrain knowledge bases to understand how documents are processed, organized, and made available for retrieval.',
+    'Gained hands-on experience with document chunking strategies and vector databases for AI-powered knowledge systems.',
   ] },
   { id: 2, role: 'Software Engineer — Frontend', company: 'AdSpyder', companyDetail: 'GSTECH Technology Pvt Ltd', duration: 'Feb 2024 — Apr 2026', type: 'Full-time', highlights: [
     'Led Next.js landing page development and optimization, improving performance, SEO, and user experience.',
-    'Designed analytics dashboards with React, GA4, and Search Console APIs, and owned a reusable React and Tailwind CSS component system.',
-    'Integrated GPT-4 ad generation features and partnered with designers to deliver responsive interfaces across Chrome, Firefox, and Safari.',
+    'Designed analytics dashboards with React, GA4, and Search Console APIs, handling JSON API responses, and owned a reusable React and Tailwind CSS component system.',
+    'Integrated GPT-4 ad generation features and partnered with designers to deliver responsive interfaces.',
+    'Debugged UI/UX issues through cross-browser testing and root-cause analysis, ensuring a consistent experience across Chrome, Firefox, and Safari.',
     'Participated in Agile sprints, GitHub code reviews, and Git branching workflows.',
   ] },
   { id: 3, role: 'Chrome Extension Developer Intern', company: 'AdSpyder', companyDetail: 'GSTECH Technology Pvt Ltd', duration: 'Aug 2023 — Jan 2024', type: 'Internship', highlights: [
@@ -43,7 +44,7 @@ export const projects = [
   { id: 1, title: 'Omni-Channel Analytics Dashboard', category: 'Analytics platform', visual: 'analytics', stack: ['React.js', 'Next.js', 'Node.js', 'GA4 API'], description: 'A responsive dashboard bringing multi-platform ad performance into one view. I owned its design and development, integrated GA4 and Search Console APIs, and added lazy loading for better performance.', highlights: ['Real-time API integration', 'Responsive data visualization', 'Cross-browser compatibility'] },
   { id: 2, title: 'AI-Orchestrated Mobile Application Suite', category: 'Mobile development', visual: 'mobile', stack: ['React Native', 'GPT-4', 'Prompt Engineering'], description: 'Cross-platform mobile applications built around reusable UI components. I translated business requirements into structured feature flows and used GPT-4 to accelerate parts of development.', highlights: ['Cross-platform components', 'Structured product flows', 'AI-assisted development'] },
   { id: 3, title: 'AI-Driven Creative Ad Generator', category: 'Generative AI', visual: 'creative', stack: ['React.js', 'Node.js', 'OpenAI API'], description: 'A user-facing interface for personalized ad creatives, connecting GPT-4 and vector search through REST APIs. I built responsive components and handled frontend API integration end-to-end.', highlights: ['Personalized ad generation', 'GPT-4 and vector search', 'End-to-end frontend integration'] },
-  { id: 4, title: 'Distributed Ad Data Ingestion System', category: 'Backend & data', visual: 'pipeline', stack: ['Node.js', 'Puppeteer', 'PostgreSQL'], description: 'Backend pipelines processing large volumes of ad data for real-time frontend dashboards. I contributed to data parsing and query optimization to improve delivery speed for the analytics UI.', highlights: ['Ad data processing', 'Query optimization', 'Dashboard data availability'] },
+  { id: 4, title: 'Distributed Ad Data Ingestion System', category: 'Backend & data', visual: 'pipeline', stack: ['Node.js', 'Puppeteer', 'PostgreSQL'], description: 'Backend pipelines processing large volumes of ad data for real-time frontend dashboards. I contributed to data parsing and SQL query optimization with PostgreSQL to improve delivery speed for the analytics UI.', highlights: ['Ad data processing', 'SQL query optimization', 'Dashboard data availability'] },
 ];
 export const extensions = [
   { title: 'Dark Mode for Google Docs', description: 'Published on the Chrome Web Store and featured in Workflow & Planning.', metric: '40,000+', label: 'active users', icon: 'moon' },
