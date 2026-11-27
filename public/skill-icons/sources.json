@@ -88,5 +88,15 @@
     "file": "openai.svg",
     "source": "https://raw.githubusercontent.com/simple-icons/simple-icons/11.15.0/icons/openai.svg",
     "bytes": 1570
+  },
+  {
+    "file": "langchain.svg",
+    "source": "https://raw.githubusercontent.com/simple-icons/simple-icons/develop/icons/langchain.svg",
+    "bytes": 527
+  },
+  {
+    "file": "langgraph.svg",
+    "source": "https://raw.githubusercontent.com/simple-icons/simple-icons/develop/icons/langgraph.svg",
+    "bytes": 202
   }
 ]

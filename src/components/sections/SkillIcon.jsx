@@ -22,6 +22,8 @@ const brandIcons = {
   Git: { file: 'git' },
   GitHub: { file: 'github', tone: 'monochrome' },
   Linux: { file: 'linux', tone: 'monochrome' },
+  LangChain: { file: 'langchain', tone: 'monochrome' },
+  LangGraph: { file: 'langgraph', tone: 'monochrome' },
 };
 
 const conceptIcons = {
@@ -33,6 +35,8 @@ const conceptIcons = {
   'Vector Databases': Database,
   'Generative AI': Sparkles,
   'Chrome Extension APIs': Puzzle,
+  JSON: Braces,
+  SQL: Database,
 };
 
 export default function SkillIcon({ name }) {

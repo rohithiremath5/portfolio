@@ -2,8 +2,13 @@ import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { readFile, readdir, access } from 'node:fs/promises';
 import { createHash } from 'node:crypto';
+import { contentInventory } from './content-inventory.mjs';
 
 const html = await readFile('dist/index.html', 'utf8');
+const inventory = JSON.parse(await readFile('tests/ui-content-inventory.json', 'utf8'));
+test('redesign preserves every text fragment, link, SEO tag and section order', () => {
+  assert.deepEqual(contentInventory(html), inventory);
+});
 test('all essential sections and resume content are in static HTML', () => {
   for (const id of ['home', 'about', 'projects', 'experience', 'skills', 'education', 'contact']) {
     assert.match(html, new RegExp(`<section[^>]*id="${id}"`));

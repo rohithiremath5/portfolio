@@ -1,4 +1,158 @@
-# Portfolio redesign and verification
+# Hybrid Modern Engineering redesign — current verification
+
+Implemented locally on November 27, 2026 (Asia/Calcutta). This report supersedes
+the November 4 visual direction archived below. No commit, push, or deployment
+was performed.
+
+## Implemented design and reasons
+
+- Centralized light/dark tokens use neutral surfaces and restrained indigo accents.
+  Local variable Geist Sans and Geist Mono establish consistent display, body,
+  and technical typography without runtime font requests to external services.
+- The compact sticky navbar retains its existing branding, labels, active-section
+  behavior, keyboard focus, mobile menu, resume action, and theme persistence.
+- The hero uses a roughly 55/45 content/illustration split on desktop and stacks
+  on mobile. The existing Frontend/API/Data/AI study now uses theme-aware surfaces,
+  a fine grid, a small radial glow, and restrained connection lines.
+- Three bordered statistic cards retain the exact metrics, labels, and disclaimer.
+  Decorative Lucide icons provide context without adding claims.
+- All four projects use a consistent two-column desktop card grid and a single
+  mobile column. The existing interface studies retain their labels and disclaimer.
+  Contributions remain open by default using the existing native disclosures.
+- Extension cards emphasize the existing adoption figures. Professional experience
+  remains an open vertical timeline; About uses an editorial layout without cards.
+- Five skill groups use responsive grouped tiles, local technology logos, category
+  icons, and visible text labels. Existing LangChain/LangGraph skills now have local
+  Simple Icons assets; JSON and SQL retain appropriate conceptual icons.
+- Education uses compact bordered cards. Contact and footer use the shared theme
+  system and preserve copy-email, social/phone links, and back-to-top behavior.
+- Hover movement is limited to 2–3px, and reduced-motion preferences disable
+  transitions and smooth scrolling. Essential content never waits for animation.
+
+The design follows the supplied principles from [Linear](https://linear.app/),
+[Geist](https://vercel.com/geist/introduction),
+[Brittany Chiang](https://brittanychiang.com/), and
+[Aceternity](https://ui.aceternity.com/bento-grid). Their readable reference pages
+were consulted alongside the prompt. Bento Grids and Simple Icons exposed no
+readable page content through the web tool; the deployed portfolio URL was
+inaccessible through that tool. The local production build was used for auditing.
+
+## Audit and exact content preservation
+
+The work began from a clean Git status after the resume-content update. React 18,
+Vite 5, the existing component tree, theme provider, CSS, content modules,
+prerenderer, generated public profiles, and existing browser checks were inspected.
+The current production build and before screenshots were captured before redesign.
+
+`tests/ui-content-inventory.json` records 238 rendered text fragments (199 unique),
+20 links (12 unique destinations), 22 SEO/structured-data tags, and all seven section
+anchors in their original order. The new inventory test compares all of them
+exactly, including repeated content and decorative illustration labels.
+
+`src/data/resumeData.js`, `src/data/siteCopy.js`, the resume PDF, the professional
+content baseline, metadata text, and the social preview image remain unchanged.
+The existing SHA-256 tests verify the content module and PDF; all professional data
+still matches the baseline in static HTML, JSON, and Markdown. The only head asset
+change is the font preload URL. No content, achievement, skill, project, or link
+destination was added or rewritten.
+
+## Executed validation
+
+- `npm.cmd run build`: passed, including client build, prerendering, public profile
+  generation, structured data, and unchanged resume copying.
+- `npm.cmd test`: 10 tests passed, including the new exact UI-content inventory.
+- `python scripts/browser-check.py`: passed in installed headless Chrome against
+  the production preview. Hydration retains the prerendered H1 node.
+- Both themes checked at 320, 375, 390, 425, 650, 768, 900, 1024, 1280, 1440, and
+  1920px. No horizontal overflow, clipped skill labels, or overlapping project cards.
+- Mobile navigation: opening, first-link focus, Escape, returned trigger focus,
+  closing on selection, section focus, and anchor scrolling passed.
+- All 26 desktop links/buttons/disclosures were traversed by keyboard with visible
+  focus. Skip link, active navigation, sticky-header offsets, and back-to-top passed.
+- Theme switching/persistence, system preference changes, unavailable storage,
+  clipboard success/failure, PDF download, hashed PDF URL, `/resume`, and
+  `/resume.pdf` passed. No browser runtime, console, or hydration errors.
+- All local technology logos were scrolled into view and decoded successfully;
+  their light/dark presentation was visually reviewed after lazy loading.
+- With JavaScript disabled, all seven sections, contributions, mobile navigation,
+  resume links, and email remain usable.
+- axe WCAG 2.2 AA checks reported zero violations in fourteen combinations: both
+  themes at 320, 375, 425, 768, 1024, 1440, and 1920px. This is automated evidence,
+  not a complete accessibility certification; manual screen-reader testing was
+  not performed.
+- Generated JSON/Markdown/TXT/XML endpoints, MIME types, valid JSON/XML,
+  missing-document 404s, canonical/sitemap consistency, and static SEO passed.
+- `git diff --check`: passed. No lint or type-check script is configured.
+
+### Measured Lighthouse results
+
+Lighthouse 12.8.2, local production preview on `127.0.0.1:4173`, installed headless
+Chrome 158 on Windows. Final audits ran sequentially using
+`python scripts/lighthouse-check.py`.
+Mobile uses Lighthouse's default simulated mobile network and 4× CPU slowdown;
+desktop uses its desktop preset. These are local lab measurements, not deployed
+field measurements.
+
+| Audit | Performance | Accessibility | Best practices | SEO | LCP | TBT | CLS |
+| --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
+| Before, mobile | 99 | 100 | 100 | 100 | 1.8s | 50ms | 0 |
+| Final, mobile | 99 | 100 | 100 | 100 | 1.8s | 10ms | 0 |
+| Final, desktop | 100 | 100 | 100 | 100 | 0.4s | 0ms | 0 |
+
+An earlier mobile audit run alongside browser checks scored 89 with 370ms TBT;
+the isolated final run above removes that competing test workload. Both reports
+are retained locally. The final client JS is 182.80kB (57.44kB gzip), compared with
+181.28kB (57.11kB gzip) before. CSS is 33.56kB (7.17kB gzip), compared with 33.36kB
+(7.53kB gzip). The two active font files total 52,528 bytes, slightly less than the
+previous 53,452 bytes. No dependency was added, removed, or upgraded.
+
+## Files changed or created
+
+Modified:
+
+- `src/index.css`: theme, typography, layouts, cards, illustration treatment,
+  interactions, responsive rules, and reduced motion.
+- `src/components/sections/Skills.css`: responsive grouped technology tiles.
+- `src/components/sections/Skills.jsx`: decorative category icons.
+- `src/components/sections/SkillIcon.jsx`: existing new-resume skill icon mappings.
+- `src/components/sections/CredibilityStrip.jsx`: decorative statistic icons.
+- `src/components/sections/Education.jsx`: decorative education icon.
+- `index.html`: local Geist Sans preload; SEO metadata preserved.
+- `public/fonts/README.txt`: font provenance and license references.
+- `public/skill-icons/sources.json`: new local icon provenance.
+- `public/skill-icons/README.md`: new logo source documentation.
+- `scripts/browser-check.py`: both themes at eleven widths, label/overlap checks.
+- `scripts/prerender.test.mjs`: exact content-inventory assertion.
+- `README.md`: current audit and optional Lighthouse workflow links.
+- `REDESIGN.md`: this current report, with the previous audit archived below.
+
+New:
+
+- `public/fonts/geist-sans-latin.woff2`, `public/fonts/geist-mono-latin.woff2`.
+- `public/fonts/geist-OFL.txt`, `public/fonts/geistmono-OFL.txt`.
+- `public/skill-icons/langchain.svg`, `public/skill-icons/langgraph.svg`.
+- `scripts/content-inventory.mjs`: rendered-text/link/SEO inventory helper.
+- `tests/ui-content-inventory.json`: pre-redesign content snapshot.
+- `scripts/lighthouse-check.py`: optional audit using existing local tooling.
+
+Before screenshots and the baseline Lighthouse report are under ignored
+`.codex-tmp/hybrid-before/`. Final desktop/mobile screenshots and isolated mobile/
+desktop Lighthouse JSON reports are under ignored `.codex-tmp/hybrid/`.
+Responsive screenshots, axe results, and functional browser results are under
+ignored `.codex-tmp/redesign/chrome/`. Generated `dist/` remains ignored.
+
+## Review limits
+
+The changes are local and ready to review. Automated functional, responsive,
+accessibility, and performance checks used Chromium on Windows; Firefox, Safari,
+real-device testing, screen-reader testing, and post-deployment verification were
+not performed. External profile destinations were preserved, not independently
+verified for account availability. The original local font assets remain for the
+existing social-image authoring script; the checked-in social image is unchanged.
+
+---
+
+# Archived November 4 redesign and verification
 
 Implemented and locally verified on November 4, 2026 (Asia/Calcutta).
 The redesign is ready for the existing Vercel workflow. This session did not deploy it.

@@ -29,6 +29,13 @@ available; otherwise install Playwright in your development environment.
 python scripts/browser-check.py
 ```
 
+With the existing local Lighthouse tooling available, optional production audits
+can also be run without installing packages:
+
+```sh
+python scripts/lighthouse-check.py
+```
+
 Set `CHROME_PATH` to use Edge or another installed Chromium browser. Set
 `BROWSER_NAME=edge` to keep its artifacts separately. Set `AXE_PATH` to a local
 `axe.min.js` to enable automated WCAG checks; the script also discovers the existing
@@ -82,6 +89,10 @@ content module and PDF. Tests compare those against static HTML, JSON, and Markd
 If you intentionally update your profile later, review and update the baseline in
 the same change. Replacing the PDF does not automatically parse or rewrite content.
 
+`tests/ui-content-inventory.json` additionally captures the rendered text, link
+counts, metadata, and section order before the current UI redesign. Intentional
+future content changes must review and update this inventory as well.
+
 Project visuals are illustrative studies, not production screenshots. Resume-sourced
 experience and user figures are labeled as such. The source has no project demos
 or Chrome Web Store URLs; the design does not fabricate those links.
@@ -117,3 +128,5 @@ access. Dashboard protection/firewall settings must permit the intended audience
 
 See [REDESIGN.md](REDESIGN.md) for the audit, content checklist, file changes,
 measured validation results, and remaining verification limits.
+The current report covers the November 27 Hybrid Modern Engineering redesign;
+the earlier November 4 audit is preserved there as historical context.

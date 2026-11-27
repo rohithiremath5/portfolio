@@ -68,28 +68,40 @@ with sync_playwright() as p:
         assert response.ok and response.body().startswith(b'%PDF'), path
     results.append('Clipboard, resume download, original PDF URL and /resume: PASS')
 
-    for width in [1440, 1280, 1024, 900, 768, 650, 390, 375, 320]:
-        page.set_viewport_size({'width': width, 'height': 900})
-        page.evaluate('window.scrollTo(0,0)')
-        assert page.evaluate('document.documentElement.scrollWidth <= innerWidth'), width
-        assert page.locator('.hero-description').evaluate('el => parseFloat(getComputedStyle(el).fontSize)') >= 16
-        if width in [1440, 768, 390, 320]:
-            page.screenshot(path=str(artifacts / f'validated-{width}.png'), full_page=True)
-        if width in [768, 390, 320]:
-            menu = page.get_by_role('button', name='Open navigation')
-            menu.click()
-            assert page.locator('#main-menu').is_visible()
-            assert page.locator('#main-menu a').first.evaluate('el => el === document.activeElement')
-            assert page.get_by_role('button', name='Close navigation').get_attribute('aria-expanded') == 'true'
-            page.keyboard.press('Escape')
-            assert not page.locator('#main-menu').is_visible()
-            assert menu.evaluate('el => el === document.activeElement')
-            menu.click()
-            page.locator('#main-menu').get_by_role('link', name='Work', exact=True).click()
-            page.wait_for_function('location.hash === "#projects"')
-            assert not page.locator('#main-menu').is_visible()
-            assert page.locator('#projects').evaluate('el => el === document.activeElement')
-    results.append('No overflow at nine widths (320–1440); mobile menu, ARIA, Escape, focus and anchors: PASS')
+    # Lazy images only load as they approach the viewport. Decode each local logo
+    # before judging its presentation or taking skill-section screenshots.
+    for logo in page.locator('.skill-card__icon img').all():
+        logo.scroll_into_view_if_needed()
+        logo.evaluate('el => el.decode()')
+        assert logo.evaluate('el => el.complete && el.naturalWidth > 0')
+    results.append('All local technology logos load and decode successfully: PASS')
+
+    for theme in ['light', 'dark']:
+        page.evaluate('t => { document.documentElement.dataset.theme = t; document.documentElement.style.colorScheme = t; }', theme)
+        for width in [320, 375, 390, 425, 650, 768, 900, 1024, 1280, 1440, 1920]:
+            page.set_viewport_size({'width': width, 'height': 900})
+            page.evaluate('window.scrollTo(0,0)')
+            assert page.evaluate('document.documentElement.scrollWidth <= innerWidth'), (theme, width)
+            assert page.locator('.skill-card__name').evaluate_all('els => els.every(el => el.scrollWidth <= el.clientWidth)'), (theme, width, 'skill labels')
+            assert page.locator('.project-card').evaluate_all('els => els.every((a, i) => els.every((b, j) => { if (i >= j) return true; const x=a.getBoundingClientRect(), y=b.getBoundingClientRect(); return x.right <= y.left + 1 || y.right <= x.left + 1 || x.bottom <= y.top + 1 || y.bottom <= x.top + 1; }))'), (theme, width, 'project overlap')
+            assert page.locator('.hero-description').evaluate('el => parseFloat(getComputedStyle(el).fontSize)') >= 16
+            if width in [1440, 768, 390, 320]:
+                page.screenshot(path=str(artifacts / f'validated-{theme}-{width}.png'), full_page=True)
+            if width in [768, 390, 320]:
+                menu = page.get_by_role('button', name='Open navigation')
+                menu.click()
+                assert page.locator('#main-menu').is_visible()
+                assert page.locator('#main-menu a').first.evaluate('el => el === document.activeElement')
+                assert page.get_by_role('button', name='Close navigation').get_attribute('aria-expanded') == 'true'
+                page.keyboard.press('Escape')
+                assert not page.locator('#main-menu').is_visible()
+                assert menu.evaluate('el => el === document.activeElement')
+                menu.click()
+                page.locator('#main-menu').get_by_role('link', name='Work', exact=True).click()
+                page.wait_for_function('location.hash === "#projects"')
+                assert not page.locator('#main-menu').is_visible()
+                assert page.locator('#projects').evaluate('el => el === document.activeElement')
+    results.append('No overflow, clipped skill labels or overlapping projects at eleven widths (320-1920) in both themes; mobile menu, ARIA, Escape, focus and anchors: PASS')
     page.set_viewport_size({'width': 1440, 'height': 1000})
     page.emulate_media(reduced_motion='reduce')
     page.reload(wait_until='networkidle')
@@ -139,16 +151,16 @@ with sync_playwright() as p:
 
     if axe_path:
         accessibility = []
-        for theme, width in [('light',1440),('dark',1440),('light',320),('dark',390)]:
+        for theme, width in [(theme, width) for theme in ['light','dark'] for width in [320,375,425,768,1024,1440,1920]]:
             page.set_viewport_size({'width':width,'height':1000})
-            page.evaluate('theme => {document.documentElement.dataset.theme = theme}', theme)
+            page.evaluate('theme => {document.documentElement.dataset.theme = theme; document.documentElement.style.colorScheme = theme}', theme)
             page.add_script_tag(path=axe_path)
             report = page.evaluate('async () => { const r = await axe.run(document, {runOnly:{type:"tag",values:["wcag2a","wcag2aa","wcag21a","wcag21aa","wcag22aa","best-practice"]}}); return {violations:r.violations,incomplete:r.incomplete}; }')
             accessibility.append({'theme':theme,'width':width,**report})
         (artifacts / 'axe.json').write_text(json.dumps(accessibility, indent=2), encoding='utf-8')
         violations = [(report['theme'], report['width'], item['id'], [node['target'] for node in item['nodes']]) for report in accessibility for item in report['violations']]
         assert not violations, violations
-        results.append('axe WCAG 2.2 AA: zero violations in four theme/viewport combinations')
+        results.append('axe WCAG 2.2 AA: zero violations in fourteen theme/viewport combinations')
     else:
         results.append('axe: NOT RUN (set AXE_PATH)')
 
